@@ -1,3 +1,15 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+#--------------------------
+#Url del Menu Principal
+#--------------------------
+index:
+  path: /
+  controller: App\Controller\DefaultController::index
+
+home:
+  path: /app/
+  controller: App\Controller\DefaultController::home
+ 
+producto:
+  path: /app/productos
+  controller: App\Controller\ProductoController::index
+

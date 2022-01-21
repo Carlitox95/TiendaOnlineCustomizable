@@ -1,0 +1,178 @@
+body {
+ display: flex;
+ min-height: 100vh;
+ flex-direction: column;
+}
+
+main {
+ padding-top: 1%;
+ flex: 1 0 auto;
+ background-image: url("../img/texturaContenedor.jpg");
+}
+
+.page-footer{
+ padding-top:0px;
+}
+
+.gradiente1 {
+ background: rgb(255,255,255);
+ background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(68,68,68,1) 0%);
+ color: white;
+ border: 0px solid #A49E9E;
+ border-radius: 30px 30px 30px 30px;
+}
+
+.carousel { 
+ height: 800px;
+ perspective: 950px;
+ transform: translateY(-100px);
+}
+
+.carousel carousel-item {
+ width: 7050px;
+}
+
+.textoHome {
+ font-size: 1.5vw;
+ text-align: justify;
+ margin: 10px;
+ color: #444444;
+ text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC; 
+}
+
+.tituloSobreImagen {
+ font-size: 2vw;
+ #background-color: #FFDEE9;
+ #background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+}
+
+.cajaProducto {
+ margin-bottom: 0.5vw;
+ #margin-right: 0.01vw;
+}
+
+.descripcionProducto {
+ min-height: 120px;
+ font-size: 0.9vw;
+}
+
+.imagenProducto {
+ height: 300px;
+ width: 340px;
+}
+
+.tituloColorOficial {
+ border-bottom: 3px solid #757575;
+ padding-bottom:2px;
+}
+
+.redondearBordes {
+ -webkit-border-radius: 30px;
+ -moz-border-radius: 30px;
+ border-radius: 30px;
+}
+
+.colorOficial {
+ background-color: #757575;
+}
+
+.fondoOficial {
+ color: white;
+ background-color: #757575;
+}
+
+.collection.with-header .collection-item .fondoOficialClaro {
+ background-color: #e0e0e0;
+ color: red;
+}
+
+.collection.with-header .collection-header {
+ background-color: #757575;
+ color: white;
+}
+
+.textoBlockquote {
+ border-color:#757575;
+ #background-color:#eceff1;
+ text-align: justify;
+}
+
+.dataTables_filter {
+ display: none;
+}
+
+.contenidoOculto {
+ visibility: hidden;
+}
+
+
+/* label color */
+.input-field label {
+ color: #757575;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+ color: #757575;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+ border-bottom: 1px solid #757575;
+ box-shadow: 0 1px 0 0 #ec407a;
+}
+
+/* valid color */
+.input-field input[type=text].valid {
+ border-bottom: 1px solid #757575;
+ box-shadow: 0 1px 0 0 #ec407a;
+}
+
+/* invalid color */
+.input-field input[type=text].invalid {
+ border-bottom: 1px solid #757575;
+ box-shadow: 0 1px 0 0 #ec407a;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+ color: #757575;
+}
+
+.fullImage {
+ max-height:5%;
+ max-width:60%; 
+}
+
+.fondoHeader {
+ #background-image: url("../img/bannerRelieve.png");
+ background-position: center;
+}
+
+.separadorMain {
+ margin-top: 2%;
+}
+
+.logoHeader {
+ padding-left: 20px;
+ height:100px;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+pre{
+      padding: 16px 20px 0px;
+    background: #eee;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.info{
+  font-size: 1.3rem;
+  text-align: center;
+}

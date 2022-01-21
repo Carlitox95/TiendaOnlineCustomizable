@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+      
+<!-- Muestro los Productos -->
+ {% include "Producto/listarProductos.html.twig" with { 'productos' : productos  } %}
+<!-- Muestro los Productos -->
+
+<!-- Botones de Direccionamiento -->
+<div class="offset-s2 col s8 offset-s2">
+    <center>      
+      <a href="{{ path('home') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+       <i class="material-icons left">home</i>Volver al Home
+      </a> 
+    </center>
+</div>
+<!-- Botones de Direccionamiento -->
+
+<br>
+<br>
+{% endblock %}
+

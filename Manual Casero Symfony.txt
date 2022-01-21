@@ -2,12 +2,13 @@
 Comandos SYMFONY 5.3
 ========================================
 
-
-
+- Instalar Symfony Web App: symfony new my_project_name --full
+- Instalar Symfony Api Rest: symfony new my_project_name
 - Instalar Dependencias: composer install
 - Instalar Web Server: composer require symfony/apache-pack
 - Instalar Paquete de Seguridad: composer require symfony/security-bundle
 - Instalar Paquete de Error: composer require symfony/twig-pack
+- Crear la entidad Usuario: php bin/console make:user
 - Crear Autentificador de Usuario: php bin/console make:auth
 - Crear Entidades: php bin/console make:entity
 - Crear Controladores: php bin/console make:controller

@@ -1,0 +1,274 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\ProductoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass=ProductoRepository::class)
+ */
+class Producto
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nombre;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $descripcion;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Categoria::class, mappedBy="producto")
+     */
+    private $categorias;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Imagen::class, mappedBy="Producto",cascade={"persist"})
+     */
+    private $imagenes;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $Precio;
+
+    /**
+     * @ORM\Column(type="string", length=2500, nullable=true)
+     */
+    private $descripcionCompleta;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $destacado;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $activo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $codigo;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $stock;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=carrito::class, inversedBy="productos")
+     */
+    private $carrito;
+
+    
+
+    public function __construct()
+    {
+        $this->categorias = new ArrayCollection();
+        $this->imagenes = new ArrayCollection();
+        $this->carrito = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getNombre(): ?string
+    {
+        return $this->nombre;
+    }
+
+    public function setNombre(string $nombre): self
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    public function getDescripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(?string $descripcion): self
+    {
+     $this->descripcion = $descripcion;
+     return $this;
+    }
+
+
+    function setCategorias($categorias) {
+     $this->categorias = $categorias;
+     return $this;
+    }
+
+    /**
+     * @return Collection|Categoria[]
+     */
+    public function getCategorias(): Collection
+    {
+        return $this->categorias;
+    }
+
+    public function addCategoria(Categoria $categoria): self
+    {
+        if (!$this->categorias->contains($categoria)) {
+            $this->categorias[] = $categoria;
+            $categoria->addProducto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategoria(Categoria $categoria): self
+    {
+        if ($this->categorias->removeElement($categoria)) {
+            $categoria->removeProducto($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Imagen[]
+     */
+    public function getImagenes(): Collection
+    {
+        return $this->imagenes;
+    }
+
+    public function addImagen(Imagen $imagen): self
+    {
+        if (!$this->imagenes->contains($imagen)) {
+            $this->imagenes[] = $imagen;
+            $imagen->setProducto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImagen(Imagen $imagen): self
+    {
+        if ($this->imagenes->removeElement($imagen)) {
+            // set the owning side to null (unless already changed)
+            if ($imagen->getProducto() === $this) {
+                $imagen->setProducto(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPrecio(): ?float
+    {
+        return $this->Precio;
+    }
+
+    public function setPrecio(?float $Precio): self
+    {
+        $this->Precio = $Precio;
+
+        return $this;
+    }
+
+    public function getDescripcionCompleta(): ?string
+    {
+        return $this->descripcionCompleta;
+    }
+
+    public function setDescripcionCompleta(?string $descripcionCompleta): self
+    {
+        $this->descripcionCompleta = $descripcionCompleta;
+
+        return $this;
+    }
+
+    public function getDestacado(): ?bool
+    {
+        return $this->destacado;
+    }
+
+    public function setDestacado(?bool $destacado): self
+    {
+        $this->destacado = $destacado;
+
+        return $this;
+    }
+
+    public function getActivo(): ?bool
+    {
+        return $this->activo;
+    }
+
+    public function setActivo(bool $activo): self
+    {
+        $this->activo = $activo;
+
+        return $this;
+    }
+
+    public function getCodigo(): ?string
+    {
+        return $this->codigo;
+    }
+
+    public function setCodigo(?string $codigo): self
+    {
+        $this->codigo = $codigo;
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(int $stock): self
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|carrito[]
+     */
+    public function getCarrito(): Collection
+    {
+        return $this->carrito;
+    }
+
+    public function addCarrito(carrito $carrito): self
+    {
+        if (!$this->carrito->contains($carrito)) {
+            $this->carrito[] = $carrito;
+        }
+
+        return $this;
+    }
+
+    public function removeCarrito(carrito $carrito): self
+    {
+        $this->carrito->removeElement($carrito);
+
+        return $this;
+    }
+
+  
+}

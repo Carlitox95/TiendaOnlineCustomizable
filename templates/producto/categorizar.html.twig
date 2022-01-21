@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+    
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Categorizar Producto'  } %}   
+
+<blockquote class="textoBlockquote">
+ <p>Seleccionar las Categorias para el Producto: <strong>{{ producto.nombre }}</strong></p>
+</blockquote>
+
+<!-- Formulario para Producto -->
+ {% include "default/formularioSeleccionarMultiplesEntidades.html.twig"  with { 'form': form, 'entidad': 'Categorias para Seleccionar'} %} 
+ {# {{ form(form) }} #} 
+<!-- Formulario para Producto -->
+
+<!-- Botones de Direccionamiento -->
+<div class="offset-s2 col s8 offset-s2">
+    <center>
+      <a href="{{ path('producto') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+       <i class="material-icons left">assignment</i>Volver 
+      </a> 
+      <a href="{{ path('index') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+       <i class="material-icons left">home</i>Volver al Home
+      </a> 
+    </center>
+</div>
+<!-- Botones de Direccionamiento -->
+
+
+
+{% endblock %}

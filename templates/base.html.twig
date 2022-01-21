@@ -2,18 +2,177 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <title>{% block title %}Natale!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('img/icon.ico') }}">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+         <link rel="shortcut icon" href="{{ asset('img/icon.ico') }}" />
+         <link rel="stylesheet" href="{{ asset('css/icon.css') }}"> 
+         <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}"> 
+         <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
+         <link rel="stylesheet" href="{{ asset('css/materialize-social.css') }}">  
+         <link rel="stylesheet" href="{{ asset('css/buttons.dataTables.min.css') }}">
+         <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}">
+         <link rel="stylesheet" href="{{ asset('css/dataTables.semanticui.min.css') }}">
+         <link rel="stylesheet" href="{{ asset('css/jquery.dataTablesNuevo.min.css') }}">  
+         <link rel="stylesheet" href="{{ asset('css/icon.css') }}">     
+         <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">         
         {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+        {% block javascripts %}         
+         <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script> 
+         <script src="{{ asset('js/materialize.min.js') }}"></script> 
+         <script src="{{ asset('js/moment.min.js') }}"></script> 
+         <script src="{{ asset('js/jquery.dataTablesNuevo.min.js') }}"></script> 
+         <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>           
+         <script src="{{ asset('js/pdfmake.min.js') }}"></script>          
+         <script src="{{ asset('js/buttons.html5.min.js') }}"></script> 
+         <script src="{{ asset('js/buttons.print.min.js') }}"></script>
+         <script src="{{ asset('js/jszip.min.js') }}"></script>
+         <script src="{{ asset('js/vfs_fonts.js') }}"></script>           
+         <script src="{{ asset('js/html2pdf.bundle.js') }}"></script>
+         <script src="{{ asset('js/scripts.js') }}"></script>  
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <body>
+        {% block body %} 
+        
+        <!-- Header -->
+        {% block header %}
+
+            <!-- Header del sitio --> 
+            <header id="header">             
+            <!-- Nvar para VERSION ESCRITORIO -->
+           
+            
+            <div class="navbar-fixed">  
+            <nav class="colorOficial fondoHeader">                    
+                <a id="logoUrl" href="{{ path('index') }}" class="brand-logo">
+                 <img class="logoHeader" src="{{ asset('img/logo.png') }}">
+                </a>                  
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                   <ul class="right hide-on-med-and-down">                     
+                     <li><a href="{{ path('index') }}"><i class="material-icons left">home</i>Home</a></li>                                           
+                        {% if app.user %}
+                         <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                             <li><a class="dropdown-trigger" href="#!" data-target="dropdownProductos">Productos<i class="material-icons right">arrow_drop_down</i></a></li>                 
+                             <li><a href="{{ path('user') }}"><i class="material-icons left">verified_user</i> {{ app.user.username }}</a></li>
+                            {% else %}
+                             <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
+                             <li><a href="{{ path('user') }}"><i class="material-icons left">person</i> {{ app.user.username }}</a></li>
+                            {% endif %}
+                         <li><a href="{{ path('app_logout') }}"><i class="material-icons left">exit_to_app</i> Salir</a></li>
+                        {% else %}
+                         <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
+                         <li><a href="{{ path('app_login') }}"><i class="material-icons left">person</i> Ingresar</a></li>   
+                        {% endif %}
+                   </ul>
+                </div>
+            </nav>
+            </div>
+            <!-- Nvar para VERSION ESCRITORIO -->
+
+            <!-- Menus Desplegables-->
+            <ul id="dropdownProductos" class="dropdown-content">
+             <li><a href="{{ path('producto') }}"><i class="material-icons left">new_releases</i>Listado</a></li>
+             <li><a href="{{ path('producto_nuevo') }}"><i class="material-icons left">create</i>Crear</a></li> 
+             <li><a href="#"><i class="material-icons left">shopping_cart</i>Ofertas</a></li>             
+            </ul>
+            <ul id="dropdownProductosMovil" class="dropdown-content">
+             <li><a href="{{ path('producto') }}"><i class="material-icons left">new_releases</i>Listado</a></li>
+             <li><a href="{{ path('producto_nuevo') }}"><i class="material-icons left">create</i>Crear</a></li> 
+             <li><a href="#"><i class="material-icons left">shopping_cart</i>Ofertas</a></li>                    
+            </ul>
+            <!-- Menus Desplegables-->
+
+            <!-- Menu Desplegable para VERSION MOVIL -->            
+            <ul class="sidenav" id="mobile-demo"> 
+             <li><a href="{{ path('index') }}"><i class="material-icons left">home</i>Home</a></li>                          
+                {% if app.user %}
+                 <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                     <li><a class="dropdown-trigger" href="#!" data-target="dropdownProductosMovil">Productos<i class="material-icons left">arrow_drop_down</i></a></li>                 
+                     <li><a href="{{ path('user') }}"><i class="material-icons left">verified_user</i> {{ app.user.username }}</a></li>
+                    {% else %}                     
+                     <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
+                     <li><a href="{{ path('user') }}"><i class="material-icons left">person</i> {{ app.user.username }}</a></li>
+                    {% endif %}
+                 <li><a href="{{ path('app_logout') }}"><i class="material-icons left">exit_to_app</i> Salir</a></li>
+                {% else %}
+                 <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
+                 <li><a href="{{ path('app_login') }}"><i class="material-icons left">person</i> Ingresar</a></li>   
+                {% endif %}                
+            </ul>     
+            <!-- Menu Desplegable para VERSION MOVIL -->                
+
+            
+         </header>
+        <!-- Header del sitio --> 
+
+
+        
+        {% endblock header %}
+        <!-- Header -->
+
+       
+        <!-- Bloque que contendra las vista de la App -->
+        <main> 
+        <br>
+        <div class="container">
+        {% if message  is defined %} <div class="flash-notice"> {{ message }} </div>  {% endif %} 
+            
+            <!-- Muestro el Contenido de cada vista -->
+            {% block contenido %} 
+            
+
+            {% endblock contenido %}
+            <!-- Muestro el Contenido de cada vista -->
+
+        </div>
+        <br>
+        </main>
+        <!-- Bloque que contendra las vista de la App -->
+
+        
+        
+
+
+        <!-- Footer -->
+        <footer class="page-footer colorOficial">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Mas Informacion</h5>
+                <p class="grey-text text-lighten-4">
+                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                 Lorem Ipsum has been the industry's standard dummy text...
+                </p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Contacto</h5>
+                <ul>
+                 <li class="collection-item">Link 1</li>
+                 <li class="collection-item">Link 2</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            ©2022 Natale
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+
+            </div>
+          </div>
+        </footer>
+
+        <!-- Footer -->
+
+      
+
+        {% endblock body %}
+    </body>
     </body>
 </html>

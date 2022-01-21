@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+    
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Mi Carrito de Compras'} %}
+    
+
+
+
+<!-- Carrito de Compras -->
+<div class="row">
+<ul class="collection with-header">
+    <li class="collection-header white-text"><strong><i class="material-icons left">shopping_cart</i>Mis Productos</strong></li>
+ 
+    {# Si el carrito tiene productos los muestros #}
+    {% if carrito.getProductos()|length > 0 %}
+
+        {% for producto in carrito.getProductos() %} 
+        <li class="collection-item">
+            <div>
+             <strong><i class="material-icons left">info</i>{{ producto.nombre }}</strong> - Codigo: {{ producto.codigo }}
+             <div class="secondary-content">${{ producto.precio }} <a href="{{ path('carrito_quitar',{'idProducto': producto.id}) }}"><i class="material-icons" title="Quitar Producto">remove_shopping_cart</i></a></div>
+            </div>
+        </li>  
+        {% endfor %}
+    {% else %}
+     <li class="collection-item"><strong><i class="material-icons left">shopping_cart</i>El carrito de compras esta vacio</strong></li>
+    {% endif %}
+    {# Si el carrito tiene productos los muestros #}
+
+
+    <li class="collection-header white-text">
+        <div>
+             <strong><i class="material-icons left">attach_money</i>TOTAL</strong>
+             <div class="secondary-content white-text">${{ carrito.monto }}</div>
+        </div>
+    </li>
+</ul>
+</div>
+<!-- Carrito de Compras -->
+
+
+
+{% endblock %}
+

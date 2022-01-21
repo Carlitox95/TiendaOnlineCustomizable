@@ -1,0 +1,23 @@
+<div class="row gradiente1">
+ <br>
+ <center><h4>{{ mensaje }}</h4></center>
+ <br>
+</div>
+
+<br>
+
+<!-- Slider de Productos Destacados -->
+<div class="slider">
+   <ul class="slides">
+   {% for producto in productos %}    
+      {% if producto.getImagenes()|length > 0 %}      
+         {% for imagen in producto.getImagenes() %}              
+          <li><img class="responsive-img" src="{{ asset(imagen.url) }}"></li>
+         {% endfor %} 
+      {% endif %}
+   {% endfor %}
+   </ul>    
+</div>
+<!-- Slider de Productos Destacados -->
+
+<br>
