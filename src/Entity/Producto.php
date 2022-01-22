@@ -33,12 +33,7 @@ class Producto
      * @ORM\ManyToMany(targetEntity=Categoria::class, mappedBy="producto")
      */
     private $categorias;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Imagen::class, mappedBy="producto",cascade={"persist"})
-     */
-    private $imagenes;
-
+   
     /**
      * @ORM\Column(type="float", nullable=true)
      */
@@ -150,12 +145,14 @@ class Producto
         return $this;
     }
 
+   
+
     /**
      * @return Collection|Imagen[]
      */
-    public function getImagenes(): Collection
+    public function getImagens(): Collection
     {
-        return $this->imagenes;
+        return $this->imagens;
     }
 
     public function addImagen(Imagen $imagen): self
@@ -282,13 +279,7 @@ class Producto
         return $this;
     }
 
-    /**
-     * @return Collection|Imagen[]
-     */
-    public function getImagens(): Collection
-    {
-        return $this->imagens;
-    }
+    
 
   
 }

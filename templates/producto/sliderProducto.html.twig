@@ -10,10 +10,10 @@
 <div class="slider">
 
    <!-- Obtengo las Imagenes -->
-   {% if producto.getImagenes()|length > 0 %}      
+   {% if producto.getImagens()|length > 0 %}      
       <!-- Iteramos sobre todas las imagenes conseguidas -->
       <ul class="slides">
-      {% for imagen in producto.getImagenes() %}              
+      {% for imagen in producto.getImagens() %}              
        <li><img class="responsive-img" src="{{ asset(imagen.url) }}"></li>
       {% endfor %}
       </ul>

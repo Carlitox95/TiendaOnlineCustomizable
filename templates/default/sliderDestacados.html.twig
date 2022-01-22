@@ -10,8 +10,8 @@
 <div class="slider">
    <ul class="slides">
    {% for producto in productos %}    
-      {% if producto.getImagenes()|length > 0 %}      
-         {% for imagen in producto.getImagenes() %}              
+      {% if producto.getImagens()|length > 0 %}      
+         {% for imagen in producto.getImagens() %}              
           <li><img class="responsive-img" src="{{ asset(imagen.url) }}"></li>
          {% endfor %} 
       {% endif %}

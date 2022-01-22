@@ -10,8 +10,8 @@
         <div class="col s12 m6 l6">
         <div class="card sticky-action">
             <div class="card-image waves-effect waves-block waves-light">
-                {% if producto.getImagenes()|length > 0 %}
-                 {% set imagen = producto.getImagenes()|first %}
+                {% if producto.getImagens()|length > 0 %}
+                 {% set imagen = producto.getImagens()|first %}
                  <img class="imagenProducto" src="{{ asset(imagen.url) }}">             
                 {% else %}
                  <img class="imagenProducto" src="{{ asset('img/imagen-no-disponible.png') }}">
