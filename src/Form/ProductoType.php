@@ -35,7 +35,7 @@ class ProductoType extends AbstractType
             )) 
             ->add('Precio',TextType::class,array('label'=>'Precio','attr' => ['class' => 'input-field col s12','tipoInput' => 'input']))    
             ->add('imagen', FileType::class, [
-                'label' => 'Imagenes JPG/PNG',
+                'label' => 'Adjuntar Imagen Jpg/Png ',
                 // unmapped means that this field is not associated to any entity property
                 //sin asignar significa que este campo no está asociado a ninguna propiedad de entidad
                 'mapped' => false,

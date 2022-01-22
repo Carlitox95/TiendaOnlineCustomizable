@@ -135,7 +135,7 @@ class ProductoController extends AbstractController
         catch (FileException $e) {
          $this->addFlash('aviso','Error al cargar la imagen');
          //Redirecciono al listado 
-         return $this->redirectToRoute('producto');
+         return $this->redirectToRoute('producto_abm');
         }             
       }
         
@@ -144,7 +144,7 @@ class ProductoController extends AbstractController
      //Asiento los cambios en la base de datos
      $entityManager->flush();
      //Redirecciono al listado 
-     return $this->redirectToRoute('producto');
+     return $this->redirectToRoute('producto_abm');
     }
 
     //Retorno la vista
@@ -220,7 +220,7 @@ class ProductoController extends AbstractController
      //Asiento los cambios en la base de datos
      $entityManager->flush();
      //Redirecciono al listado 
-     return $this->redirectToRoute('producto');
+     return $this->redirectToRoute('producto_abm');
     }
 
     //Redirecciono a la vista      
@@ -254,6 +254,7 @@ class ProductoController extends AbstractController
     if ($form->isSubmitted() && $form->isValid()) {
      //Obtengo el producto del formulario
      $producto = $form->getData();
+
      //Le doy persistencia 
      $entityManager->persist($producto);
      //Asiento los cambios en la base de datos
@@ -273,5 +274,26 @@ class ProductoController extends AbstractController
     );
   }
 
+
+  /**
+  * Require ROLE_ADMIN for only this controller method.
+  * 
+  * @Route("/app/productos/galeria/{idProducto}", name="producto_imagenes", methods={"GET","HEAD","POST"})
+  * 
+  * @IsGranted("ROLE_ADMIN")
+  */
+  public function editarImagenesProducto($idProducto,Request $request,SluggerInterface $slugger): Response {
+   //Obtengo el EntityManager
+   $entityManager=$this->getDoctrine()->getManager();
+   //Obtengo el producto seleccionado
+   $producto=$entityManager->getRepository(Producto::class)->find($idProducto);   
+   
+    //Redirecciono a la vista      
+    return $this->render('Producto/editarImagenes.html.twig', 
+      [
+       'producto' => $producto,
+      ]
+    );
+  }
 
 }

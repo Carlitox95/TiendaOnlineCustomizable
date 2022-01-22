@@ -145,8 +145,6 @@ class Producto
         return $this;
     }
 
-   
-
     /**
      * @return Collection|Imagen[]
      */
@@ -157,8 +155,8 @@ class Producto
 
     public function addImagen(Imagen $imagen): self
     {
-        if (!$this->imagenes->contains($imagen)) {
-            $this->imagenes[] = $imagen;
+        if (!$this->imagens->contains($imagen)) {
+            $this->imagens[] = $imagen;
             $imagen->setProducto($this);
         }
 
@@ -167,7 +165,7 @@ class Producto
 
     public function removeImagen(Imagen $imagen): self
     {
-        if ($this->imagenes->removeElement($imagen)) {
+        if ($this->imagens->removeElement($imagen)) {
             // set the owning side to null (unless already changed)
             if ($imagen->getProducto() === $this) {
                 $imagen->setProducto(null);
