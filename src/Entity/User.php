@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -45,6 +47,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToOne(targetEntity=Carrito::class, mappedBy="usuario", cascade={"persist", "remove"})
      */
     private $carrito;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Venta::class, mappedBy="usuario")
+     */
+    private $ventas;
+
+    public function __construct()
+    {
+        $this->ventas = new ArrayCollection();
+    }
 
 
 
@@ -168,6 +180,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->carrito = $carrito;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Venta[]
+     */
+    public function getVentas(): Collection
+    {
+        return $this->ventas;
+    }
+
+    public function addVenta(Venta $venta): self
+    {
+        if (!$this->ventas->contains($venta)) {
+            $this->ventas[] = $venta;
+            $venta->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVenta(Venta $venta): self
+    {
+        if ($this->ventas->removeElement($venta)) {
+            // set the owning side to null (unless already changed)
+            if ($venta->getUsuario() === $this) {
+                $venta->setUsuario(null);
+            }
+        }
 
         return $this;
     }
