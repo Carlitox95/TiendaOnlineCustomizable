@@ -4,6 +4,8 @@
     
 {% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Categorizar Producto'  } %}   
 
+{% include "default/alertasFlash.html.twig" %}
+
 <blockquote class="textoBlockquote">
  <p>Seleccionar las Categorias para el Producto: <strong>{{ producto.nombre }}</strong></p>
 </blockquote>

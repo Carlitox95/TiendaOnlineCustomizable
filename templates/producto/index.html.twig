@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block contenido %} 
-      
+     
+{% include "default/alertasFlash.html.twig" %}
+ 
 <!-- Muestro los Productos -->
  {% include "Producto/listarProductos.html.twig" with { 'productos' : productos  } %}
 <!-- Muestro los Productos -->

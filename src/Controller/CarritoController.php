@@ -127,11 +127,13 @@ class CarritoController extends AbstractController
        $em->persist($productoEnCarrito);
        //Asiento los cambios en la base de datos
        $em->flush();
+       //Aviso
+       $this->addFlash('exito','Producto Agregado al Carrito de compras');
        //Retorno la vista al carrito
        return $this->redirectToRoute('carrito');
       }
       else {
-
+       $this->addFlash('aviso','No se pudo agregar el producto por falta de Stock');
        //Retorno la vista al carrito
        return $this->redirectToRoute('carrito');
       }
@@ -167,6 +169,8 @@ class CarritoController extends AbstractController
      $em->persist($productosCarrito);
      //Asiento los cambios en la base de datos
      $em->flush();
+     //Infomo
+     $this->addFlash('exito','Se elimino una unidad del producto');
     }
     else {
      //Si era el unico quito la entidad ProductosCarrito directamente
@@ -175,6 +179,8 @@ class CarritoController extends AbstractController
      $em->persist($carrito);
      //Asiento los cambios en la base de datos
      $em->flush();
+     //Infomo
+     $this->addFlash('exito','Se elimino una unidad del producto');
     }  
    //Retorno la vista al carrito
    return $this->redirectToRoute('carrito');
@@ -201,11 +207,23 @@ class CarritoController extends AbstractController
    //Determino la nueva cantidad
    $cantidadActual=$productosCarrito->getCantidad();
    $nuevaCantidad=$cantidadActual + 1;
-   $productosCarrito->setCantidad($nuevaCantidad);
-   //Le doy persistencia 
-   $em->persist($productosCarrito);
-   //Asiento los cambios en la base de datos
-   $em->flush();
+   
+    
+    //Si el stock me lo permite aumento la cantidad
+    if($this->validarStockProducto($producto,$nuevaCantidad) == true ) {
+     $productosCarrito->setCantidad($nuevaCantidad);
+     //Le doy persistencia 
+     $em->persist($productosCarrito);
+     //Asiento los cambios en la base de datos
+     $em->flush();
+     //Infomo
+     $this->addFlash('exito','Se agrego una unidad adicional');
+    }
+    else {
+     //Infomo
+     $this->addFlash('aviso','No hay stock suficiente!');
+    }
+   
    //Retorno la vista al carrito
    return $this->redirectToRoute('carrito');
   }

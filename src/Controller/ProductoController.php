@@ -106,8 +106,7 @@ class ProductoController extends AbstractController
      $producto= $form->getData(); 
      //Obtengo la imagen que subi del producto  
      $imagenSubida= $form->get('imagen')->getData();
-
-                    
+                        
       //Si existe la imagen la trabajo para guardarla
       if ($imagenSubida) {
        //Obtengo el Nombre Original de la Imagen para incluir de forma seguro el nombre de archivo en la URL
@@ -128,10 +127,15 @@ class ProductoController extends AbstractController
          $imagen->setNombre($nombreOriginalImagen);
          //Inserto mi imagen a las imagenes del Producto
          $producto->addImagen($imagen);
+         //Le doy persistencia a la imagen
+         $entityManager->persist($imagen);
+         //Aviso
+         $this->addFlash('exito','Se ha cargado la imagen correctamente y crear el producto');
         } 
         catch (FileException $e) {
-         //Si hay error decido que hacer
-         //por ahora no hay error jeje 
+         $this->addFlash('aviso','Error al cargar la imagen');
+         //Redirecciono al listado 
+         return $this->redirectToRoute('producto');
         }             
       }
         
@@ -197,13 +201,18 @@ class ProductoController extends AbstractController
          $imagen->setNombre($nombreOriginalImagen);
          //Inserto mi imagen a las imagenes del Producto
          $producto->addImagen($imagen);
+         //Le doy persistencia a la imagen
+         $entityManager->persist($imagen);    
         } 
         catch (FileException $e) {
-         //Si hay error decido que hacer
-         //por ahora no hay error jeje 
+         $this->addFlash('aviso','Error al cargar la imagen');
+         //Redirecciono al listado 
+         return $this->redirectToRoute('producto');
         }             
       }
-  
+     
+     //aviso
+     $this->addFlash('exito','Se edito el producto correctamente');
      //Obtengo el EntityManager
      $entityManager = $this->getDoctrine()->getManager();
      //Le doy persistencia 
@@ -241,7 +250,6 @@ class ProductoController extends AbstractController
    //Si se envia el formulario , existe un request
    $form->handleRequest($request);
 
-
     //Si se disparo el formulario y es valido
     if ($form->isSubmitted() && $form->isValid()) {
      //Obtengo el producto del formulario
@@ -250,6 +258,8 @@ class ProductoController extends AbstractController
      $entityManager->persist($producto);
      //Asiento los cambios en la base de datos
      $entityManager->flush();
+     //Aviso
+     $this->addFlash('aviso','Se actualizaron las categorias');        
      //Redirecciono al listado 
      return $this->redirectToRoute('producto_abm');
     }
@@ -262,20 +272,6 @@ class ProductoController extends AbstractController
       ]
     );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

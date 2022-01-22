@@ -58,7 +58,7 @@ class CategoriaController extends AbstractController
     /**
     * Require ROLE_ADMIN for only this controller method.
     *
-    * @Route("/app/productos/nuevo", name="categoria_nueva")
+    * @Route("/app/categoria/nuevo", name="categoria_nueva")
     *
     * @IsGranted("ROLE_ADMIN")
     */    
