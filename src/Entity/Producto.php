@@ -35,7 +35,7 @@ class Producto
     private $categorias;
 
     /**
-     * @ORM\OneToMany(targetEntity=Imagen::class, mappedBy="Producto",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Imagen::class, mappedBy="producto",cascade={"persist"})
      */
     private $imagenes;
 
@@ -70,17 +70,17 @@ class Producto
     private $stock;
 
     /**
-     * @ORM\ManyToMany(targetEntity=carrito::class, inversedBy="productos")
+     * @ORM\OneToMany(targetEntity=ProductosCarrito::class, mappedBy="producto")
      */
-    private $carrito;
+    private $productosCarritos;
 
     
-
     public function __construct()
     {
         $this->categorias = new ArrayCollection();
         $this->imagenes = new ArrayCollection();
         $this->carrito = new ArrayCollection();
+        $this->productosCarritos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -247,25 +247,31 @@ class Producto
     }
 
     /**
-     * @return Collection|carrito[]
+     * @return Collection|ProductosCarrito[]
      */
-    public function getCarrito(): Collection
+    public function getProductosCarritos(): Collection
     {
-        return $this->carrito;
+        return $this->productosCarritos;
     }
 
-    public function addCarrito(carrito $carrito): self
+    public function addProductosCarrito(ProductosCarrito $productosCarrito): self
     {
-        if (!$this->carrito->contains($carrito)) {
-            $this->carrito[] = $carrito;
+        if (!$this->productosCarritos->contains($productosCarrito)) {
+            $this->productosCarritos[] = $productosCarrito;
+            $productosCarrito->setProducto($this);
         }
 
         return $this;
     }
 
-    public function removeCarrito(carrito $carrito): self
+    public function removeProductosCarrito(ProductosCarrito $productosCarrito): self
     {
-        $this->carrito->removeElement($carrito);
+        if ($this->productosCarritos->removeElement($productosCarrito)) {
+            // set the owning side to null (unless already changed)
+            if ($productosCarrito->getProducto() === $this) {
+                $productosCarrito->setProducto(null);
+            }
+        }
 
         return $this;
     }

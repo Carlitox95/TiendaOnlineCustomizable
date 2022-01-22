@@ -30,7 +30,7 @@ class Imagen
     /**
      * @ORM\ManyToOne(targetEntity=Producto::class, inversedBy="imagenes")
      */
-    private $Producto;
+    private $producto;
 
     public function getId(): ?int
     {

@@ -24,21 +24,22 @@ class Carrito
      */
     private $Monto;
 
-    
-
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="carrito", cascade={"persist", "remove"})
      */
     private $usuario;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Producto::class, mappedBy="carrito")
+     * @ORM\OneToMany(targetEntity=productoscarrito::class, mappedBy="carrito")
      */
-    private $productos;
+    private $productoscarrito;
+  
 
     public function __construct()
     {
         $this->productos = new ArrayCollection();
+        $this->productosCarritos = new ArrayCollection();
+        $this->productoscarrito = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,7 +60,6 @@ class Carrito
     }
 
     
-
     public function getUsuario(): ?User
     {
         return $this->usuario;
@@ -73,29 +73,46 @@ class Carrito
     }
 
     /**
-     * @return Collection|Producto[]
+     * @return Collection|productoscarrito[]
      */
-    public function getProductos(): Collection
+    public function getProductoscarrito(): Collection
     {
-        return $this->productos;
+        return $this->productoscarrito;
     }
 
-    public function addProducto(Producto $producto): self
+    public function addProductoscarrito(productoscarrito $productoscarrito): self
     {
-        if (!$this->productos->contains($producto)) {
-            $this->productos[] = $producto;
-            $producto->addCarrito($this);
+        if (!$this->productoscarrito->contains($productoscarrito)) {
+            $this->productoscarrito[] = $productoscarrito;
+            $productoscarrito->setCarrito($this);
         }
 
         return $this;
     }
 
-    public function removeProducto(Producto $producto): self
+    public function removeProductoscarrito(productoscarrito $productoscarrito): self
     {
-        if ($this->productos->removeElement($producto)) {
-            $producto->removeCarrito($this);
+        if ($this->productoscarrito->removeElement($productoscarrito)) {
+            // set the owning side to null (unless already changed)
+            if ($productoscarrito->getCarrito() === $this) {
+                $productoscarrito->setCarrito(null);
+            }
         }
-
         return $this;
     }
+
+    public function getMontoTotal() {
+     //Defino el Monto en 0
+     $montoTotal=0;
+        //Iteramos sobre todos los productos para saber el total por producto
+        foreach ($this->getProductoscarrito() as $productoCarrito) {
+         $montoProducto=($productoCarrito->getProducto()->getPrecio() * $productoCarrito->getCantidad());
+         $montoTotal=$montoTotal + $montoProducto;            
+        }    
+
+     //Retorno el valor total
+     return $montoTotal;
+    }
+    
+
 }
