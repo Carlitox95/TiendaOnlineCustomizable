@@ -28,9 +28,11 @@ class Imagen
     private $url;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Producto::class, inversedBy="imagenes")
+     * @ORM\ManyToOne(targetEntity=producto::class, inversedBy="imagens")
      */
     private $producto;
+
+   
 
     public function getId(): ?int
     {
@@ -61,15 +63,17 @@ class Imagen
         return $this;
     }
 
-    public function getProducto(): ?Producto
+    public function getProducto(): ?producto
     {
-        return $this->Producto;
+        return $this->producto;
     }
 
-    public function setProducto(?Producto $Producto): self
+    public function setProducto(?producto $producto): self
     {
-        $this->Producto = $Producto;
+        $this->producto = $producto;
 
         return $this;
     }
+
+    
 }

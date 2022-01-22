@@ -74,6 +74,11 @@ class Producto
      */
     private $productosCarritos;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Imagen::class, mappedBy="producto")
+     */
+    private $imagens;
+
     
     public function __construct()
     {
@@ -81,6 +86,7 @@ class Producto
         $this->imagenes = new ArrayCollection();
         $this->carrito = new ArrayCollection();
         $this->productosCarritos = new ArrayCollection();
+        $this->imagens = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -274,6 +280,14 @@ class Producto
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Imagen[]
+     */
+    public function getImagens(): Collection
+    {
+        return $this->imagens;
     }
 
   
