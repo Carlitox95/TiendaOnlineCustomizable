@@ -81,6 +81,20 @@ main {
  border: 2px solid #78909c;
 }
 
+.precioSobreImagen {
+ vertical-align: middle;
+ bottom:0px;
+ background: rgb(255,255,255);
+ background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(68,68,68,1) 0%);
+ color: white;
+ border: 0px solid #A49E9E;
+ border-radius: 30px 30px 30px 30px;
+ -webkit-border-radius: 50px;
+ -moz-border-radius: 50px;
+ border-radius: 50px;
+ border: 2px solid #78909c;
+}
+
 .colorOficial {
  background-color: #757575;
 }

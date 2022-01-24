@@ -16,9 +16,11 @@
                 {% else %}
                  <img class="imagenProducto" src="{{ asset('img/imagen-no-disponible.png') }}">
                 {% endif %}
+                
+                 <span class="card-title precioSobreImagen">${{ producto.precio }}</span>
             </div>
             <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">{{ producto.nombre }}<i class="material-icons right">more_vert</i></span>
+              <span class="card-title activator grey-text text-darken-4">{{ producto.nombre }} <i class="material-icons right">more_vert</i></span>
               <p>{{ producto.descripcion }}</p>
             </div>
             <div class="card-action">
