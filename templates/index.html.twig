@@ -2,7 +2,17 @@
 
 {% block contenido %} 
     
-   hola bienvenido
+    <!-- Presentacion --> 
+    {% include "default/presentacion.html.twig" %}
+    <!-- Presentacion -->   
+
+    <!-- Productos Destacados -->
+    {% include "default/sliderDestacados.html.twig" with { 'producto': productos ,'mensaje' : 'Nuestros Productos'  } %}
+    <!-- Productos Destacados -->
+
+    <!-- Productos --> 
+    {% include "Producto/listarProductos.html.twig" with { 'productos' : productos  } %}
+    <!-- Productos -->
 
  
 
