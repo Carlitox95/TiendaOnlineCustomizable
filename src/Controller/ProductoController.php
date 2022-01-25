@@ -33,7 +33,7 @@ class ProductoController extends AbstractController
    //$productos=$em->getRepository(Producto::class)->findBy(['activo' => '1'],['destacado'=> 'DESC']);
 
     //Retorno a la vista
-    return $this->render('producto/index.html.twig', 
+    return $this->render('Producto/index.html.twig', 
       [
        'productos' => $productos,
       ]
@@ -56,7 +56,7 @@ class ProductoController extends AbstractController
    $productos=$em->getRepository(Producto::class)->findAll();
    
     //Retorno a la vista
-    return $this->render('producto/gestionar.html.twig', 
+    return $this->render('Producto/gestionar.html.twig', 
       [
        'productos' => $productos,
       ]
@@ -74,7 +74,7 @@ class ProductoController extends AbstractController
    $producto=$em->getRepository(Producto::class)->find($idProducto);
 
     //Retorno a la vista
-    return $this->render('producto/ver.html.twig', 
+    return $this->render('Producto/ver.html.twig', 
       [
        'producto' => $producto,
       ]
