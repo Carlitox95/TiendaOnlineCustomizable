@@ -30,7 +30,7 @@ class Carrito
     private $usuario;
 
     /**
-     * @ORM\OneToMany(targetEntity=productoscarrito::class, mappedBy="carrito")
+     * @ORM\OneToMany(targetEntity=ProductosCarrito::class, mappedBy="carrito")
      */
     private $productoscarrito;
   
