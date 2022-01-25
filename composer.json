@@ -87,7 +87,8 @@
             "requirements-checker": "script"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "php bin/console doctrine:schema:update -f",
         ],
         "post-update-cmd": [
             
