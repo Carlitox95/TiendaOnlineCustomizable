@@ -30,7 +30,7 @@ class ConfiguracionController extends AbstractController
      $configuraciones=$em->getRepository(Configuracion::class)->findAll();
    
         //Retorno la vista
-        return $this->render('configuracion/index.html.twig', 
+        return $this->render('Configuracion/index.html.twig', 
             [
              'configuraciones' => $configuraciones,
             ]

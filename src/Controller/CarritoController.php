@@ -33,7 +33,7 @@ class CarritoController extends AbstractController
         
    
       //Retorno la vista
-      return $this->render('carrito/index.html.twig', 
+      return $this->render('Carrito/index.html.twig', 
          [
           'carrito' => $carrito,
          ]
@@ -90,7 +90,7 @@ class CarritoController extends AbstractController
     }
 
     //Retorno la vista
-    return $this->render('carrito/confirmar.html.twig', 
+    return $this->render('Carrito/confirmar.html.twig', 
       [
        'producto' => $producto,
        'carrito' => $carrito,             
