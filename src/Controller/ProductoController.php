@@ -156,7 +156,7 @@ class ProductoController extends AbstractController
         } 
         catch (FileException $e) {
          $this->addFlash('aviso','Error al cargar la imagen');
-         //Redirecciono al listado 
+         //Redirecciono al listado          
          return $this->redirectToRoute('producto_abm');
         }             
       }
@@ -165,6 +165,8 @@ class ProductoController extends AbstractController
      $entityManager->persist($producto);
      //Asiento los cambios en la base de datos
      $entityManager->flush();
+     //Aviso
+     $this->addFlash('exito','El producto se creo correctamente');
      //Redirecciono al listado 
      return $this->redirectToRoute('producto_abm');
     }
@@ -240,7 +242,7 @@ class ProductoController extends AbstractController
      //Le doy persistencia 
      $entityManager->persist($producto);
      //Asiento los cambios en la base de datos
-     $entityManager->flush();
+     $entityManager->flush();     
      //Redirecciono al listado 
      return $this->redirectToRoute('producto_abm');
     }
