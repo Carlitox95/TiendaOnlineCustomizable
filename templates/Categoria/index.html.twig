@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+    
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Categorias de Productos'  } %}
+
+<!-- Opciones -->
+<div class="row">
+    <ul class="collection">
+        <li class="collection-item grey lighten-3">
+         <a href="{{ path('categoria_nueva') }}" class="waves-effect waves-light btn-small colorOficial white-text"><i class="material-icons left">create</i>Crear Categoria</a> 
+        </li>
+    </ul>
+</div>
+<!-- Opciones -->
+
+
+
+
+
+<div class="row">
+<table id="tabla" class="striped centered">
+    <thead class="colorOficial white-text">
+        <tr>
+         <th>ID</th>
+         <th>Nombre</th>
+         <th>Descripcion</th>
+         <th>Cantidad de Productos</th>        
+         <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody class="cyan lighten-5">
+        {% for categoria in categorias %}     
+            <tr>            
+             <td>{{ categoria.id }}</td>
+             <td>{{ categoria.nombre }}</td>
+             <td>{{ categoria.descripcion }}</td>
+             <td></td>             
+                <td>       
+                 <a href="{{ path('categoria_ver',{'idCategoria': categoria.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Ver"><i class="material-icons">visibility </i></a>    
+                 <a href="{{ path('categoria_editar',{'idCategoria': categoria.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Editar"><i class="material-icons">create</i></a>
+                </td>         
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+   
+
+<br>
+
+<!-- Botones de Direccionamiento -->
+<div class="offset-s2 col s8 offset-s2">
+    <center>
+        <a href="{{ path('user') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+          <i class="material-icons left">arrow_back</i>Volver
+        </a> 
+    </center>
+</div>
+<!-- Botones de Direccionamiento -->
+
+<br>
+<br>
+
+{% endblock %}
+

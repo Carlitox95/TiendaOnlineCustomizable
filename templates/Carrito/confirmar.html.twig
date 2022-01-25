@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+    
+   
+<!-- Formulario para Producto -->
+<ul class="collection with-header">
+    <li class="collection-header"><h6>Confirmar Seleccion</h6></li>
+    <!-- Entradas del Formulario -->
+    <li class="collection-item">  
+     <strong><i class="material-icons left">add_shopping_cart</i> {{ producto.nombre }} - Codigo Producto: {{ producto.codigo }}</strong>
+       <div class="secondary-content">${{ producto.precio }}</div>
+    </li>
+    <li class="collection-item"> 
+      {# Formulario #} 
+      <form class="col s12" method="post" action="{{ path('carritoproductos_confirmar') }}">
+        {# Campos Ocultos #}
+         <input id="productoId" name="productoId" type="hidden" value="{{ producto.id }}" class="validate">
+         <input id="carritoId" name="carritoId" type="hidden" value="{{ carrito.id }}" class="validate">
+        {# Campos Ocultos #}
+        <div class="input-field col s12">
+         <label for="cantidad">Cantidad</label>
+         <input id="cantidad" name="cantidadProducto" type="number" class="validate">
+        </div>
+        <div class="input-field col s12">         
+         <button class="waves-effect waves-light btn-small colorOficial white-text" type="submit">Confirmar</button>
+        </div>
+      </form>
+      {# Formulario #} 
+    </li>     
+   <!-- Entradas del Formulario -->
+</ul>
+<!-- Formulario para Producto -->
+
+
+
+<!-- Botones de Direccionamiento -->
+<div class="offset-s2 col s8 offset-s2">
+    <center>
+      <a href="{{ path('producto_ver',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn-small colorOficial white-text">
+       <i class="material-icons left">assignment</i>Volver 
+      </a> 
+      <a href="{{ path('index') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+       <i class="material-icons left">home</i>Volver al Home
+      </a> 
+    </center>
+</div>
+<!-- Botones de Direccionamiento -->
+
+<br>
+<br>
+
+{% endblock %}

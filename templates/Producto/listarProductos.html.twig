@@ -1,0 +1,40 @@
+<!-- Muestro los Productos -->
+<div class="row gradiente1">
+ <br>
+ <center><h4>Nuestros Productos</h4></center>
+ <br>
+</div>
+
+<div class="row">
+    {% for producto in productos %}
+        <div class="col s12 m6 l6">
+        <div class="card sticky-action">
+            <div class="card-image waves-effect waves-block waves-light">
+                {% if producto.getImagens()|length > 0 %}
+                 {% set imagen = producto.getImagens()|first %}
+                 <img class="imagenProducto" src="{{ asset(imagen.url) }}">             
+                {% else %}
+                 <img class="imagenProducto" src="{{ asset('img/imagen-no-disponible.png') }}">
+                {% endif %}
+                
+                 <span class="card-title precioSobreImagen">${{ producto.precio }}</span>
+            </div>
+            <div class="card-content contenidoDatosProductos">
+              <span class="card-title activator grey-text text-darken-4">{{ producto.nombre }} <i class="material-icons right">more_vert</i></span>
+              <p>{{ producto.descripcion }}</p>
+            </div>
+            <div class="card-action">
+             <a href="{{ path('producto_ver',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn-small colorOficial white-text">Ver</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                 <a href="{{ path('producto_editar',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn-small colorOficial white-text">Editar</a>
+                {% endif %}
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">{{ producto.nombre }}<i class="material-icons right">close</i></span>
+              <p>{{ producto.descripcionCompleta }}</p>
+            </div>
+        </div>
+        </div>        
+    {% endfor %}
+</div>
+<!-- Muestro los Productos -->

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+    
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Mensaje de Configuracion'  } %}
+    
+<!-- Muestro Informacion -->
+<ul class="collection with-header">
+ <li class="collection-header white-text"><h6>Informacion del Mensaje de Configuracion</h6></li>
+ <li class="collection-item"><strong><i class="material-icons left">info</i> ID:</strong> {{ configuracion.id }}</li>
+ <li class="collection-item"><strong><i class="material-icons left">info</i> ¿Mensaje Activo?:</strong> {% if configuracion.activo == 1 %} SI {% else %} NO {% endif %}</li>
+ <li class="collection-item"><strong><i class="material-icons left">info</i> Tipo de Mensaje:</strong> {{ configuracion.tipo }}</li>
+ <li class="collection-item">{{ configuracion.mensaje }}</li>
+</ul>
+<!-- Muestro Informacion -->
+
+
+<!-- Botones de Direccionamiento -->
+<div class="offset-s2 col s8 offset-s2">
+    <center>
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('configuracion_editar',{'idConfiguracion': configuracion.id}) }}" class="waves-effect waves-light btn colorOficial white-text">
+         <i class="material-icons left">edit</i>Editar
+        </a> 
+        {% endif %}
+        <a href="{{ path('configuracion') }}" class="waves-effect waves-light btn colorOficial white-text">
+         <i class="material-icons left">assignment</i>Volver 
+        </a> 
+        <a href="{{ path('index') }}" class="waves-effect waves-light btn colorOficial white-text">
+         <i class="material-icons left">home</i>Volver al Home
+        </a> 
+    </center>
+</div>
+<!-- Botones de Direccionamiento -->
+
+<br>
+<br>
+
+{% endblock %}
+

@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+    
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Productos del Sistema'  } %}
+
+{% include "default/alertasFlash.html.twig" %}
+
+<!-- Opciones -->
+<div class="row">
+    <ul class="collection">
+        <li class="collection-item grey lighten-3">
+         <a href="{{ path('producto_nuevo') }}" class="waves-effect waves-light btn colorOficial white-text"><i class="material-icons left">create</i>Crear Producto</a>                 
+        </li>
+    </ul>
+</div>
+<!-- Opciones -->
+
+<div class="row">
+<table id="tabla" class="striped centered">
+    <thead class="colorOficial white-text">
+        <tr>
+         <th>ID</th>
+         <th>Producto</th>
+         <th>Codigo Producto</th>
+         <th>Estado</th>
+         <th>Destacado</th>
+         <th>Unidades de Stock</th>
+         <th>Categorias</th>
+         <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody class="cyan lighten-5">
+        {% for producto in productos %}
+             
+            {% if producto.stock > 0 %}
+             <tr class="light-green accent-1">
+            {% else %}
+             <tr class="yellow lighten-2">
+            {% endif %}
+             <td>{{ producto.id }}</td>
+             <td>{{ producto.nombre }}</td>
+             <td>{{ producto.codigo }}</td>
+             <td>{% if producto.activo %} Disponible {% else %} Inactivo {% endif %}</td>
+             <td>{% if producto.destacado %} SI {% else %} NO {% endif %}</td>
+             <td>{{ producto.stock }}</td>
+             <td>{{ producto.getCategorias()|length }}</td>
+                <td>            
+                 <a href="{{ path('producto_editar',{'idProducto': producto.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Editar"><i class="material-icons">create</i></a>
+                 <a href="{{ path('producto_categoria',{'idProducto': producto.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Categorizar"><i class="material-icons">save</i></a>
+                </td>         
+          </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+   
+
+<br>
+
+<!-- Botones de Direccionamiento -->
+<div class="offset-s2 col s8 offset-s2">
+    <center>
+        <a href="{{ path('user') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+          <i class="material-icons left">arrow_back</i>Volver
+        </a> 
+    </center>
+</div>
+<!-- Botones de Direccionamiento -->
+
+<br>
+<br>
+
+{% endblock %}
+

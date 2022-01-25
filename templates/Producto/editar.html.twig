@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+    
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Editar Producto'  } %}
+
+{% include "default/alertasFlash.html.twig" %}
+
+
+<!-- Opciones -->
+<div class="row">
+    <ul class="collection">
+        <li class="collection-item grey lighten-3">
+         <a href="{{ path('producto_imagenes',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn-small colorOficial white-text"><i class="material-icons left">photo_library</i>Editar Imagenes del Producto</a> 
+         <a href="{{ path('producto_categoria',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn-small colorOficial white-text"><i class="material-icons left">note_add</i>Editar Categorias</a> 
+        </li>
+    </ul>
+</div>
+<!-- Opciones -->
+
+<!-- Formulario para Producto -->
+<ul class="collection with-header">
+   <li class="collection-header"><h6>Editar Producto</h6></li>
+   <!-- Entradas del Formulario -->
+   <li class="collection-item">  
+    {% include "default/formularioConFormato.html.twig"  with { 'form': form} %} 
+    {# {{ form(form) }} #}
+   </li>     
+   <!-- Entradas del Formulario -->
+</ul>
+<!-- Formulario para Producto -->
+
+<!-- Botones de Direccionamiento -->
+<div class="offset-s2 col s8 offset-s2">
+    <center>
+      <a href="{{ path('producto') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+       <i class="material-icons left">assignment</i>Volver 
+      </a> 
+      <a href="{{ path('index') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+       <i class="material-icons left">home</i>Volver al Home
+      </a> 
+    </center>
+</div>
+<!-- Botones de Direccionamiento -->
+
+<br>
+<br>
+
+{% endblock %}
+
