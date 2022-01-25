@@ -1,20 +1,15 @@
 {% extends 'base.html.twig' %}
  
-
-                
+          
 {% block contenido %}
+
 <div class="separadorMain">  
 
+  {% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Mi Perfil'  } %}
 
   <!-- Caja de Datos del Usuario -->
-  {% if is_granted('ROLE_ADMIN') %}
-  <div class="col s6">
-  {% else %}
-  <div class="offset-s2 col s8 offset-s2">
-  {% endif %}
-
-    <ul class="collection with-header" id="listadoPersonas">
-      <li class="collection-header"><h6>Perfil de Usuario {{usuario}}</h6></li>
+  <div class="col s12">
+    <ul class="collection with-header">      
       <li class="collection-item"><strong><i class="material-icons left">person</i>Usuario: </strong> {{ usuario.username }}</li>
       <li class="collection-item"><strong><i class="material-icons left">email</i>Mail: </strong> {{ usuario.mail }}</li>
       <li class="collection-item">
@@ -33,14 +28,53 @@
          <i class="material-icons left">edit</i>Modificar Contraseña
         </a>    
       </li>     
-    </ul>
-       
+    </ul>     
   </div>   
   <!-- Caja de Datos del Usuario -->
+  
+ <br>
+ <br>
+ <br>
+
+  {% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Mis Compras'  } %}
+
+  <!-- Ventas del Usuario -->
+  {% if usuario.getVentas()|length > 0 %} 
+    <ul class="collection with-header">     
+      <table>
+        <thead class="grey white-text">
+         <tr>
+         <td><strong>Fecha</strong></td>
+         <td><strong>Monto</strong></td>
+         <td><strong>Estado</strong></td>   
+         <td></td>         
+         </tr>
+        </thead>
+        <tbody>
+         {% for venta in usuario.getVentas() %}
+         <tr class="grey lighten-4">
+         <td>{{ venta.fecha|date("d/m/Y") }}</td>
+         <td>{{ venta.precio }}</td>
+         <td>{{ venta.estado }}</td>
+         <td></td>                       
+        </tr>   
+         {% endfor %}
+        </tbody>
+      </table>
+    </ul>      
+  {% endif %}
+  <!-- Ventas del Usuario -->
+
+ <br>
+ <br>
+ <br>
+
+
+  {% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Administracion'  } %}
 
   <!-- Si es administrador le doy acceso al panel -->
   {% if is_granted('ROLE_ADMIN') %}
-  <div class="col s6">
+  <div class="col s12">
     <ul class="collection with-header" id="listadoPersonas">
       <li class="collection-header"><h6>Panel de Administracion</h6></li>
         <a href="{{ path('abm_usuarios') }}" class="collection-item"><strong><i class="material-icons left">assignment_ind</i>Usuarios del Sistema</strong></a>   
@@ -51,16 +85,17 @@
   </div>
   {% endif %}
   <!-- Si es administrador le doy acceso al panel -->
-
-   <!-- Botones de Direccionamiento -->
-    <div class="offset-s2 col s8 offset-s2">
+ 
+ 
+  <!-- Botones de Direccionamiento -->
+  <div class="offset-s2 col s8 offset-s2">
     <center>
         <a href="{{ path('home') }}" class="waves-effect waves-light btn-small colorOficial white-text">
           <i class="material-icons left">home</i>Volver al Home
         </a> 
     </center>
-    </div>
-    <!-- Botones de Direccionamiento -->
+  </div>
+  <!-- Botones de Direccionamiento -->
 
 
 </div>
