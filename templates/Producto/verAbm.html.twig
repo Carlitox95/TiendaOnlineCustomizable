@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block contenido %} 
+
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Vista del Producto para Administracion'  } %}
     
 <!-- Acciones del Producto -->
     {% if app.user %}

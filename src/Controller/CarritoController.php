@@ -61,7 +61,7 @@ class CarritoController extends AbstractController
   
   //Funcion que valida el stock de un Producto antes de comprar
   private function validarStockProducto($unProducto,$unaCantidad) {
-    if($unProducto->getStock() > $unaCantidad ) {
+    if($unProducto->getStock() >= $unaCantidad ) {
      return true;
     }
     else {
