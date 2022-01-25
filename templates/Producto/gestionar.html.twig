@@ -46,8 +46,8 @@
              <td>{{ producto.stock }}</td>
              <td>{{ producto.getCategorias()|length }}</td>
                 <td>            
-                 <a href="{{ path('producto_editar',{'idProducto': producto.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Editar"><i class="material-icons">create</i></a>
-                 <a href="{{ path('producto_categoria',{'idProducto': producto.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Categorizar"><i class="material-icons">save</i></a>
+                 <a href="{{ path('producto_ver_abm',{'idProducto': producto.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Ver"><i class="material-icons">visibility</i></a>  
+                 <a href="{{ path('producto_editar',{'idProducto': producto.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Editar"><i class="material-icons">create</i></a>             
                 </td>         
           </tr>
         {% endfor %}

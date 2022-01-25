@@ -81,6 +81,28 @@ class ProductoController extends AbstractController
     );
   }
 
+  /**
+  * Require ROLE_ADMIN for only this controller method.
+  *
+  * @Route("/app/producto/ver/{idProducto}", name="producto_ver_abm")
+  *
+  * @IsGranted("ROLE_ADMIN")
+  */
+  //Funcion para listar todos los productos disponibles
+  public function verProductoAbm($idProducto): Response {
+   //Obtengo el EntityManager
+   $em = $this ->getDoctrine()->getManager();     
+   //Obtengo el producto a mostrar
+   $producto=$em->getRepository(Producto::class)->find($idProducto);
+
+    //Retorno a la vista
+    return $this->render('Producto/verAbm.html.twig', 
+      [
+       'producto' => $producto,
+      ]
+    );
+  }
+
    
   /**
   * Require ROLE_ADMIN for only this controller method.
