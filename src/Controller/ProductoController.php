@@ -114,7 +114,7 @@ class ProductoController extends AbstractController
        //Es necesario para incluir de forma segura el nombre del archivo como parte de la URL
        $nombreSeguroArchivo=$slugger->slug($nombreOriginalImagen);
        //Defino la URL completa de mi imagen subida
-        $urlImagen= 'img/producto/'.$producto->getId().'_'.$nombreSeguroArchivo.'.'.$imagenSubida->guessExtension();
+        $urlImagen= 'img/producto/'.$producto->getId().'/'.$nombreSeguroArchivo.'.'.$imagenSubida->guessExtension();
 
         try {
          //Muevo el archivo al directorio donde los almaceno
@@ -188,7 +188,7 @@ class ProductoController extends AbstractController
        //Es necesario para incluir de forma segura el nombre del archivo como parte de la URL
        $nombreSeguroArchivo=$slugger->slug($nombreOriginalImagen);
        //Defino la URL completa de mi imagen subida
-       $urlImagen= 'img/producto/'.$producto->getId().'_'.$nombreSeguroArchivo.'.'.$imagenSubida->guessExtension();
+       $urlImagen= 'img/producto/'.$producto->getId().'/'.$nombreSeguroArchivo.'.'.$imagenSubida->guessExtension();
 
         try {
          //Muevo el archivo al directorio donde los almaceno
