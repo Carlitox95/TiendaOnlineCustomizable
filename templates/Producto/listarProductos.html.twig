@@ -6,6 +6,8 @@
 </div>
 
 <div class="row">
+
+    {% if productos|length > 0 %}
     {% for producto in productos %}
         <div class="col s12 m6 l6">
         <div class="card sticky-action">
@@ -36,5 +38,10 @@
         </div>
         </div>        
     {% endfor %}
+    {% else %}
+     <br>
+     <center><p>No hay productos por el momento , disculpe las molestias</p></center>
+     <br>
+    {% endif %}
 </div>
 <!-- Muestro los Productos -->
