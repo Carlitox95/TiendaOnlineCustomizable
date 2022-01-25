@@ -118,7 +118,7 @@ class ProductoController extends AbstractController
 
         try {
          //Muevo el archivo al directorio donde los almaceno
-         $imagenSubida->move($this->getParameter('url_imagenes'),$urlImagen);
+         $imagenSubida->move($this->getParameter('imagenes_directory'),$urlImagen);
          //Creo la nueva entidad imagen..
          $imagen = new Imagen(); 
          //Asigno los datos a la imagen
@@ -192,7 +192,7 @@ class ProductoController extends AbstractController
 
         try {
          //Muevo el archivo al directorio donde los almaceno
-         $imagenSubida->move($this->getParameter('url_imagenes'),$urlImagen);
+         $imagenSubida->move($this->getParameter('imagenes_directory'),$urlImagen);
          //Creo la nueva entidad imagen..
          $imagen = new Imagen(); 
          //Asigno los datos a la imagen
