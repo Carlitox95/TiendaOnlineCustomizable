@@ -111,14 +111,14 @@ class ProductoController extends AbstractController
       if ($imagenSubida) {
        //Obtengo el Nombre Original de la Imagen para incluir de forma seguro el nombre de archivo en la URL
        $nombreOriginalImagen= pathinfo($imagenSubida->getClientOriginalName(), PATHINFO_FILENAME); 
-       //Es necesario para incluir de forma segura el nombre del archivo como parte de la URL
-       $nombreSeguroArchivo=$slugger->slug($nombreOriginalImagen);
+       //Es necesario para incluir de forma segura el nombre del archivo como parte de la URL (todo minusculas)
+       $nombreSeguroArchivo=strtolower($slugger->slug($nombreOriginalImagen));
        //Defino la URL completa de mi imagen subida
         $urlImagen= 'img/producto/'.$producto->getId().'/'.$nombreSeguroArchivo.'.'.$imagenSubida->guessExtension();
 
         try {
          //Muevo el archivo al directorio donde los almaceno
-         $imagenSubida->move($this->getParameter('imagenes_directory'),$urlImagen);
+         $imagenSubida->move($this->getParameter('imagenes_directory')."/".$producto->getId(),$urlImagen);
          //Creo la nueva entidad imagen..
          $imagen = new Imagen(); 
          //Asigno los datos a la imagen
@@ -185,14 +185,14 @@ class ProductoController extends AbstractController
       if ($imagenSubida) {
        //Obtengo el Nombre Original de la Imagen para incluir de forma seguro el nombre de archivo en la URL
        $nombreOriginalImagen= pathinfo($imagenSubida->getClientOriginalName(), PATHINFO_FILENAME); 
-       //Es necesario para incluir de forma segura el nombre del archivo como parte de la URL
-       $nombreSeguroArchivo=$slugger->slug($nombreOriginalImagen);
+       //Es necesario para incluir de forma segura el nombre del archivo como parte de la URL (todo en minusculas)
+       $nombreSeguroArchivo=strtolower($slugger->slug($nombreOriginalImagen));
        //Defino la URL completa de mi imagen subida
        $urlImagen= 'img/producto/'.$producto->getId().'/'.$nombreSeguroArchivo.'.'.$imagenSubida->guessExtension();
 
         try {
          //Muevo el archivo al directorio donde los almaceno
-         $imagenSubida->move($this->getParameter('imagenes_directory'),$urlImagen);
+         $imagenSubida->move($this->getParameter('imagenes_directory')."/".$producto->getId(),$urlImagen);
          //Creo la nueva entidad imagen..
          $imagen = new Imagen(); 
          //Asigno los datos a la imagen
