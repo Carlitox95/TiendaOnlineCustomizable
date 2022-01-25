@@ -33,7 +33,7 @@ class ProductoController extends AbstractController
    //$productos=$em->getRepository(Producto::class)->findBy(['activo' => '1'],['destacado'=> 'DESC']);
 
     //Retorno a la vista
-    return $this->render('producto/index.html.twig', 
+    return $this->render('Producto/index.html.twig', 
       [
        'productos' => $productos,
       ]
@@ -56,7 +56,7 @@ class ProductoController extends AbstractController
    $productos=$em->getRepository(Producto::class)->findAll();
    
     //Retorno a la vista
-    return $this->render('producto/gestionar.html.twig', 
+    return $this->render('Producto/gestionar.html.twig', 
       [
        'productos' => $productos,
       ]
@@ -74,7 +74,7 @@ class ProductoController extends AbstractController
    $producto=$em->getRepository(Producto::class)->find($idProducto);
 
     //Retorno a la vista
-    return $this->render('producto/ver.html.twig', 
+    return $this->render('Producto/ver.html.twig', 
       [
        'producto' => $producto,
       ]
@@ -114,11 +114,11 @@ class ProductoController extends AbstractController
        //Es necesario para incluir de forma segura el nombre del archivo como parte de la URL
        $nombreSeguroArchivo=$slugger->slug($nombreOriginalImagen);
        //Defino la URL completa de mi imagen subida
-        $urlImagen= 'img/producto/'.$producto->getId().'_'.$nombreSeguroArchivo.'.'.$imagenSubida->guessExtension();
+        $urlImagen= 'img/producto/'.$producto->getId().'/'.$nombreSeguroArchivo.'.'.$imagenSubida->guessExtension();
 
         try {
          //Muevo el archivo al directorio donde los almaceno
-         $imagenSubida->move($this->getParameter('imagenes_directory'),$urlImagen);
+         $imagenSubida->move($this->getParameter('url_imagenes'),$urlImagen);
          //Creo la nueva entidad imagen..
          $imagen = new Imagen(); 
          //Asigno los datos a la imagen
@@ -188,11 +188,11 @@ class ProductoController extends AbstractController
        //Es necesario para incluir de forma segura el nombre del archivo como parte de la URL
        $nombreSeguroArchivo=$slugger->slug($nombreOriginalImagen);
        //Defino la URL completa de mi imagen subida
-       $urlImagen= 'img/producto/'.$producto->getId().'_'.$nombreSeguroArchivo.'.'.$imagenSubida->guessExtension();
+       $urlImagen= 'img/producto/'.$producto->getId().'/'.$nombreSeguroArchivo.'.'.$imagenSubida->guessExtension();
 
         try {
          //Muevo el archivo al directorio donde los almaceno
-         $imagenSubida->move($this->getParameter('imagenes_directory'),$urlImagen);
+         $imagenSubida->move($this->getParameter('url_imagenes'),$urlImagen);
          //Creo la nueva entidad imagen..
          $imagen = new Imagen(); 
          //Asigno los datos a la imagen

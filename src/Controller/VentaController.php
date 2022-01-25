@@ -13,7 +13,7 @@ class VentaController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('venta/index.html.twig', [
+        return $this->render('Venta/index.html.twig', [
             'controller_name' => 'VentaController',
         ]);
     }
