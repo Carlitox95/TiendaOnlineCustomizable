@@ -17,26 +17,48 @@ use Doctrine\Common\Collections\Collection;
 
 class VentaController extends AbstractController
 {
-    
-    /**
-    *
-    * @Route("/venta/{idVenta}", name="venta_ver")
-    *
-    */
-    //Funcion para mostrar el detalle de una venta
-    public function verVenta($idVenta): Response {
-     //Obtengo el EntityManager
-     $em = $this ->getDoctrine()->getManager();    
-     //Obtengo todos los Productos que esten disponibles 
-     $venta=$em->getRepository(Venta::class)->find($idVenta);
+
+   /**
+   *
+   * @Route("/venta", name="venta")
+   *
+   */
+   //Funcion para mostrar el detalle de una venta
+   public function misCompras(): Response {
+    //Obtengo el EntityManager
+    $em = $this ->getDoctrine()->getManager();    
+    //Obtengo el usuario logueado
+    $usuarioLogueado=$this->get('security.token_storage')->getToken()->getUser();
+    //Obtengo las compras del usuario
+    $ventas= $usuarioLogueado->getVentas();
    
-        //Retorno a la vista
-        return $this->render('Venta/ver.html.twig', 
-            [
-             'venta' => $venta,
-            ]
-        );
-  }
+      //Retorno a la vista
+      return $this->render('Venta/index.html.twig', 
+         [
+          'ventas' => $ventas,
+         ]
+      );
+   }
+    
+   /**
+   *
+   * @Route("/venta/{idVenta}", name="venta_ver")
+   *
+   */
+   //Funcion para mostrar el detalle de una venta
+   public function verVenta($idVenta): Response {
+    //Obtengo el EntityManager
+    $em = $this ->getDoctrine()->getManager();    
+    //Obtengo todos los Productos que esten disponibles 
+    $venta=$em->getRepository(Venta::class)->find($idVenta);
+   
+      //Retorno a la vista
+      return $this->render('Venta/ver.html.twig', 
+         [
+          'venta' => $venta,
+         ]
+      );
+   }
 
     //Funcion que me crea un carrito de compras en caso de que no exista
     private function resetearCarrito($usuarioLogueado) {

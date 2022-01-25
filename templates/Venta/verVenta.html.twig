@@ -6,34 +6,34 @@
  <li class="collection-item"><strong><i class="material-icons left">attach_money</i> Total a Pagar:</strong> ${{ venta.precio }}</li>   
  <li class="collection-header"><h6>Articulos</h6></li>  
 
- {# Si el carrito tiene productos los muestros #}    
-    {% if venta.getArticulos()|length > 0 %}        
-        <table>
-        <thead class="grey white-text">
+   {# Si el carrito tiene productos los muestros #}    
+   {% if venta.getArticulos()|length > 0 %}        
+      <table>
+      <thead class="grey white-text">
          <tr>
-         <td><strong>Producto</strong></td>
-         <td><strong>Codigo</strong></td>
-         <td><strong>Precio Unitario</strong></td>
-         <td><strong>Cantidad</strong></td>         
-         <td><strong>Monto</strong></td>
+          <td><strong>Producto</strong></td>
+          <td><strong>Codigo</strong></td>
+          <td><strong>Precio Unitario</strong></td>
+          <td><strong>Cantidad</strong></td>         
+          <td><strong>Monto</strong></td>
          </tr>
-        </thead>
-        <tbody>
-        {% for productoCarrito in venta.getArticulos() %} 
-        <tr class="grey lighten-4">
-         <td><strong><i class="material-icons left">add_shopping_cart</i>{{ productoCarrito.producto.nombre }}</strong></td>
-         <td>{{ productoCarrito.producto.codigo }}</td>
-         <td>${{ productoCarrito.producto.precio }}</td>
-         <td>{{ productoCarrito.cantidad }}</td>          
-         <td>${{ productoCarrito.getMonto() }}</td>         
-        </tr>        
-        {% endfor %}
-        </tbody>
-        </table>
-
-    {% else %}
-     <li class="collection-item"><strong><i class="material-icons left">shopping_cart</i>No hay productos en esta venta</strong></li>
-    {% endif %}
+      </thead>
+      <tbody>
+         {% for productoCarrito in venta.getArticulos() %} 
+            <tr class="grey lighten-4">
+             <td><strong><i class="material-icons left">add_shopping_cart</i>{{ productoCarrito.producto.nombre }}</strong></td>
+             <td>{{ productoCarrito.producto.codigo }}</td>
+             <td>${{ productoCarrito.producto.precio }}</td>
+             <td>{{ productoCarrito.cantidad }}</td>          
+             <td>${{ productoCarrito.getMonto() }}</td>         
+            </tr>        
+         {% endfor %}
+      </tbody>
+      </table>
+   {% else %}
+    <li class="collection-item"><strong><i class="material-icons left">shopping_cart</i>No hay productos en esta venta</strong></li>
+   {% endif %}
+   {# Si el carrito tiene productos los muestros #} 
 
 </ul>
 <!-- Datos de la Venta -->

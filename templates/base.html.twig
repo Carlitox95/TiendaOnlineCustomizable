@@ -55,6 +55,7 @@
                    <ul class="right hide-on-med-and-down">                     
                      <li><a href="{{ path('index') }}"><i class="material-icons left">home</i>Home</a></li>                                           
                         {% if app.user %}
+                         <li><a href="{{ path('venta') }}"><i class="material-icons left">shop</i> Mis Compras</a></li>
                          <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>
                             {% if is_granted('ROLE_ADMIN') %}
                              <li><a class="dropdown-trigger" href="#!" data-target="dropdownProductos">Productos<i class="material-icons right">arrow_drop_down</i></a></li>                 
@@ -91,6 +92,7 @@
             <ul class="sidenav" id="mobile-demo"> 
              <li><a href="{{ path('index') }}"><i class="material-icons left">home</i>Home</a></li>                          
                 {% if app.user %}
+                 <li><a href="{{ path('venta') }}"><i class="material-icons left">shop</i> Mis Compras</a></li>
                  <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>
                     {% if is_granted('ROLE_ADMIN') %}
                      <li><a class="dropdown-trigger" href="#!" data-target="dropdownProductosMovil">Productos<i class="material-icons left">arrow_drop_down</i></a></li>                 
