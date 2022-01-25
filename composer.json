@@ -88,7 +88,7 @@
         },
         "post-install-cmd": [
             "@auto-scripts",
-            "php bin/console doctrine:schema:update — force"
+            "doctrine:schema:update — force"
         ],
         "post-update-cmd": [
             
