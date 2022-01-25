@@ -9,7 +9,8 @@
 
   <!-- Caja de Datos del Usuario -->
   <div class="col s12">
-    <ul class="collection with-header">      
+    <ul class="collection with-header">
+      <li class="collection-header"><h6>Perfil de Usuario {{usuario}}</h6></li>
       <li class="collection-item"><strong><i class="material-icons left">person</i>Usuario: </strong> {{ usuario.username }}</li>
       <li class="collection-item"><strong><i class="material-icons left">email</i>Mail: </strong> {{ usuario.mail }}</li>
       <li class="collection-item">
@@ -34,43 +35,13 @@
   
  <br>
  <br>
- <br>
 
-  {% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Mis Compras'  } %}
-
-  <!-- Ventas del Usuario -->
-  {% if usuario.getVentas()|length > 0 %} 
-    <ul class="collection with-header">     
-      <table>
-        <thead class="grey white-text">
-         <tr>
-         <td><strong>Fecha</strong></td>
-         <td><strong>Monto</strong></td>
-         <td><strong>Estado</strong></td>   
-         <td></td>         
-         </tr>
-        </thead>
-        <tbody>
-         {% for venta in usuario.getVentas() %}
-         <tr class="grey lighten-4">
-         <td>{{ venta.fecha|date("d/m/Y") }}</td>
-         <td>{{ venta.precio }}</td>
-         <td>{{ venta.estado }}</td>
-         <td></td>                       
-        </tr>   
-         {% endfor %}
-        </tbody>
-      </table>
-    </ul>      
-  {% endif %}
-  <!-- Ventas del Usuario -->
-
+ <!-- Listar Ventas del Usuario -->
+ {% include "Venta/listarVentas.html.twig" with { 'ventas' : usuario.getVentas()  } %}
+ <!-- Listar Ventas del Usuario -->
+ 
  <br>
  <br>
- <br>
-
-
-  {% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Administracion'  } %}
 
   <!-- Si es administrador le doy acceso al panel -->
   {% if is_granted('ROLE_ADMIN') %}
@@ -85,8 +56,7 @@
   </div>
   {% endif %}
   <!-- Si es administrador le doy acceso al panel -->
- 
- 
+
   <!-- Botones de Direccionamiento -->
   <div class="offset-s2 col s8 offset-s2">
     <center>

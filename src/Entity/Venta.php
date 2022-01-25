@@ -25,11 +25,9 @@ class Venta
     private $fecha;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="ventas")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="ventas")
      */
-    private $usuario;
-
-    
+    private $usuario;    
 
     /**
      * @ORM\Column(type="object")

@@ -12,19 +12,32 @@ use App\Entity\Venta;
 use App\Entity\Estadoventa;
 use App\Entity\ProductosCarrito;
 use App\Form\ProductosCarritoType;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class VentaController extends AbstractController
 {
-    /**
-     * @Route("/venta", name="venta")
-     */
-    public function index(): Response
-    {
-        return $this->render('Venta/index.html.twig', [
-            'controller_name' => 'VentaController',
-        ]);
-    }
     
+    /**
+    *
+    * @Route("/venta/{idVenta}", name="venta_ver")
+    *
+    */
+    //Funcion para mostrar el detalle de una venta
+    public function verVenta($idVenta): Response {
+     //Obtengo el EntityManager
+     $em = $this ->getDoctrine()->getManager();    
+     //Obtengo todos los Productos que esten disponibles 
+     $venta=$em->getRepository(Venta::class)->find($idVenta);
+   
+        //Retorno a la vista
+        return $this->render('Venta/ver.html.twig', 
+            [
+             'venta' => $venta,
+            ]
+        );
+  }
+
     //Funcion que me crea un carrito de compras en caso de que no exista
     private function resetearCarrito($usuarioLogueado) {
      //Obtengo el EntityManager
@@ -64,8 +77,17 @@ class VentaController extends AbstractController
      $estadoInicial->addVenta($nuevaVenta);
      
      //Le cargo los articulos del carrito de compras a la venta
-     $articulosVenta=$usuarioLogueado->getCarrito()->getProductoscarrito();
+     $productosCarrito=$usuarioLogueado->getCarrito()->getProductoscarrito();
+     //Coleccion donde voy a almacenar mis articulos
+     $articulosVenta = new ArrayCollection();
+       
+        foreach ($productosCarrito as $productoCarrito) {
+         $articulosVenta->add($productoCarrito);
+        }
+
+     //Cargo la coleccion de productoscarrito a los articulos de la venta
      $nuevaVenta->setArticulos($articulosVenta);
+     
      //Le calculo el valor a pagar por el total de la venta
      $precioVenta=$usuarioLogueado->getCarrito()->getMontoTotal();
      $nuevaVenta->setPrecio($precioVenta);

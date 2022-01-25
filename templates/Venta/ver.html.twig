@@ -2,14 +2,23 @@
 
 {% block contenido %} 
     
+
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Detalles de la Compra'  } %}
+
+
 <!-- Datos de la Venta -->
+{% if venta.getUsuario() == app.user %}
  {% include "Venta/verVenta.html.twig" with { 'venta' : venta  } %}
+{% else %}
+ <p><strong><i class="material-icons left">info</i> No puede ver las ventas de otros usuarios.</strong></p>
+{% endif %}
 <!-- Datos de la Venta -->
+
 
 <!-- Botones de Direccionamiento -->
 <div class="offset-s2 col s8 offset-s2">
     <center>
-      <a href="{{ path('index') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+      <a href="{{ path('user') }}" class="waves-effect waves-light btn-small colorOficial white-text">
        <i class="material-icons left">home</i>Volver al Home
       </a> 
     </center>

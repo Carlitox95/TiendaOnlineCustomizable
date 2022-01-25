@@ -1,0 +1,32 @@
+<!-- Ventas del Usuario -->
+  {% if ventas|length > 0 %} 
+    <ul class="collection with-header">
+     <li class="collection-header"><h6>Mis Compras</h6></li>
+      <table class="highlight">
+        <thead class="grey white-text">
+         <tr>
+         <td><strong>Fecha</strong></td>
+         <td><strong>Monto</strong></td>
+         <td><strong>Estado</strong></td> 
+         <td><strong>Pago de la Compra</strong></td>  
+         <td><strong>Acciones</strong></td>         
+         </tr>
+        </thead>
+        <tbody>
+         {% for venta in ventas %}
+         <tr class="grey lighten-4">
+         <td>{{ venta.fecha|date("d/m/Y") }}</td>
+         <td>${{ venta.precio }}</td>
+         <td>{{ venta.estado }}</td>
+         <td></td>
+            <td>
+             <a href="{{ path('venta_ver',{'idVenta': venta.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Ver"><i class="material-icons">visibility</i></a>  
+            </td>                       
+        </tr>   
+         {% endfor %}
+        </tbody>
+      </table>
+     <li class="collection-header"><strong>Total de Ventas</strong> <div class="secondary-content white-text"><strong>{{ usuario.getVentas()|length }} </strong></div></li>
+    </ul>      
+  {% endif %}
+  <!-- Ventas del Usuario -->
