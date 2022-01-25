@@ -74,6 +74,11 @@ main {
  padding-bottom:2px;
 }
 
+.contenidoDatosProductos {
+ min-height:150px;
+ max-height:150px; 
+}
+
 .redondearBordes {
  -webkit-border-radius: 30px;
  -moz-border-radius: 30px;
