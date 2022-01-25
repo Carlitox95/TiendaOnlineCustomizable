@@ -8,6 +8,7 @@ Comandos SYMFONY 5.3
 - Instalar Web Server: composer require symfony/apache-pack
 - Instalar Paquete de Seguridad: composer require symfony/security-bundle
 - Instalar Paquete de Error: composer require symfony/twig-pack
+- Crear la Base de datos: php bin/console doctrine:database:create
 - Crear la entidad Usuario: php bin/console make:user
 - Crear Autentificador de Usuario: php bin/console make:auth
 - Crear Entidades: php bin/console make:entity
