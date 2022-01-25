@@ -7,9 +7,7 @@
         {% if producto.stock > 0 %}
             <div class="row">
                 <ul class="collection">
-                    <li class="collection-item grey lighten-3">
-                     <a href="{{ path('carritoproductos_agregar',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn colorOficial white-text"><i class="material-icons left">add_shopping_cart</i>Comprar</a> 
-                       
+                    <li class="collection-item grey lighten-3">   
                         {% if is_granted('ROLE_ADMIN') %}
                          <a href="{{ path('producto_editar',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn colorOficial white-text"><i class="material-icons left">edit</i>Editar</a> 
                         {% endif %}
@@ -37,22 +35,20 @@
              <li class="collection-item light-green accent-3"><strong><i class="material-icons left">av_timer</i> Stock:</strong> {{ producto.stock }} Unidades </li>
             {% else %}
              <li class="collection-item red lighten-1"><strong><i class="material-icons left">av_timer</i> Stock:</strong> {{ producto.stock }} Unidades </li>
+            {% endif %}        
+
+            {% if producto.activo == true %}  
+             <li class="collection-item light-green accent-3"><strong><i class="material-icons left">info</i> ¿Esta a la Venta?: SI</strong> </li>     
+            {% else %} 
+             <li class="collection-item red lighten-1"><strong><i class="material-icons left">info</i> ¿Esta a la Venta?: NO</strong> </li>     
             {% endif %}
-        
 
-                {% if producto.activo == true %}  
-                 <li class="collection-item light-green accent-3"><strong><i class="material-icons left">info</i> ¿Esta a la Venta?: SI</strong> </li>     
-                {% else %} 
-                 <li class="collection-item red lighten-1"><strong><i class="material-icons left">info</i> ¿Esta a la Venta?: NO</strong> </li>     
-                {% endif %}
+            {% if producto.destacado == true %} 
+             <li class="collection-item light-green accent-3"><strong><i class="material-icons left">info</i> ¿Producto Destacado?: SI</strong> </li>     
+            {% else %} 
+             <li class="collection-item"><strong><i class="material-icons left">info</i> ¿Producto Destacado?: NO</strong> </li>     
+            {% endif %}
 
-                {% if producto.destacado == true %} 
-                 <li class="collection-item light-green accent-3"><strong><i class="material-icons left">info</i> ¿Producto Destacado?: SI</strong> </li>     
-                {% else %} 
-                 <li class="collection-item"><strong><i class="material-icons left">info</i> ¿Producto Destacado?: NO</strong> </li>     
-                {% endif %}
-
-           
          <li class="collection-item"><strong><i class="material-icons left">art_track</i> Categorias:</strong> </li>
          <li class="collection-header"><h5>Descripcion del Producto</h5></li>
          <li class="collection-item"><strong><i class="material-icons left">info</i> Descripcion:</strong> {{ producto.descripcion }}</li>     
