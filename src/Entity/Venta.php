@@ -30,7 +30,7 @@ class Venta
     private $usuario;
 
     /**
-     * @ORM\OneToOne(targetEntity=estadoventa::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Estadoventa::class, cascade={"persist", "remove"})
      */
     private $estado;
 
