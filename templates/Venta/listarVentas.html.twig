@@ -18,7 +18,7 @@
          <td>{{ venta.fecha|date("d/m/Y") }}</td>
          <td>${{ venta.precio }}</td>
          <td>{{ venta.estado }}</td>
-         <td></td>
+         <td><strong>PENDIENTE</strong></td>
             <td>
              <a href="{{ path('venta_ver',{'idVenta': venta.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Ver"><i class="material-icons">visibility</i></a>  
             </td>                       

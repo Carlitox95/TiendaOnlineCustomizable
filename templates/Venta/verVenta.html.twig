@@ -1,10 +1,10 @@
 <!-- Datos de la Venta -->
 <ul class="collection with-header">   
- <li class="collection-header"><h5>Venta</h5></li>          
+ <li class="collection-header"><h6>Venta</h6></li>          
  <li class="collection-item"><strong><i class="material-icons left">info</i> Fecha:</strong> {{ venta.fecha|date("d/m/Y") }} </li> 
  <li class="collection-item"><strong><i class="material-icons left">info</i> Estado:</strong> {{ venta.estado }} </li> 
  <li class="collection-item"><strong><i class="material-icons left">attach_money</i> Total a Pagar:</strong> ${{ venta.precio }}</li>   
- <li class="collection-header"><h5>Articulos</h5></li>  
+ <li class="collection-header"><h6>Articulos</h6></li>  
 
  {# Si el carrito tiene productos los muestros #}    
     {% if venta.getArticulos()|length > 0 %}        
@@ -15,7 +15,6 @@
          <td><strong>Codigo</strong></td>
          <td><strong>Precio Unitario</strong></td>
          <td><strong>Cantidad</strong></td>         
-         <td></td>
          <td><strong>Monto</strong></td>
          </tr>
         </thead>
