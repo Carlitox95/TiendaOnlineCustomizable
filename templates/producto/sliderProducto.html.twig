@@ -13,8 +13,13 @@
    {% if producto.getImagens()|length > 0 %}      
       <!-- Iteramos sobre todas las imagenes conseguidas -->
       <ul class="slides">
-      {% for imagen in producto.getImagens() %}              
-       <li><img class="responsive-img" src="{{ asset(imagen.url) }}"></li>
+      {% for imagen in producto.getImagens() %}   
+         {% if producto.getImagens()|length > 0 %}
+          {% set imagen = producto.getImagens()|first %}
+          <li><img class="responsive-img" src="{{ asset(imagen.url) }}"></li>             
+         {% else %}
+          <li><img class="responsive-img" src="{{ asset('img/imagen-no-disponible.png') }}"></li> 
+         {% endif %}           
       {% endfor %}
       </ul>
       <!-- Obtengo las Imagenes -->             

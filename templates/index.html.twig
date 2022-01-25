@@ -7,13 +7,14 @@
     <!-- Presentacion -->   
 
     <!-- Productos Destacados -->
-    {% include "default/sliderDestacados.html.twig" with { 'producto': productos ,'mensaje' : 'Nuestros Productos'  } %}
+    {% if productos|length > 0 %}
+     {% include "default/sliderDestacados.html.twig" with { 'producto': productos ,'mensaje' : 'Nuestros Productos'  } %}
+    {% endif %}
     <!-- Productos Destacados -->
 
     <!-- Productos --> 
     {% include "Producto/listarProductos.html.twig" with { 'productos' : productos  } %}
     <!-- Productos -->
-
  
 
 {% endblock %}
