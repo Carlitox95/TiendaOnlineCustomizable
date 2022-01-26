@@ -1,7 +1,7 @@
 <!-- Ventas del Usuario -->
-  {% if ventas|length > 0 %} 
-    <ul class="collection with-header">
-     <li class="collection-header"><h6>Mis Compras</h6></li>
+  <ul class="collection with-header">
+    <li class="collection-header white-text"><strong><i class="material-icons left">shopping_cart</i>Mis Compras</strong></li>
+    {% if ventas|length > 0 %} 
       <table class="highlight">
         <thead class="grey white-text">
          <tr>
@@ -26,7 +26,11 @@
          {% endfor %}
         </tbody>
       </table>
-     <li class="collection-header"><strong>Total de Ventas</strong> <div class="secondary-content white-text"><strong>{{ ventas|length }} </strong></div></li>
-    </ul>      
-  {% endif %}
+     <li class="collection-header"><strong>Total de Compras</strong> <div class="secondary-content white-text"><strong>{{ ventas|length }} </strong></div></li>   
+    {% else %}
+     <li class="collection-item"><strong><i class="material-icons left">shopping_cart</i>No hay compras registradas en el sistema</strong></li>
+    {% endif %}
+  </ul> 
+
+
   <!-- Ventas del Usuario -->
