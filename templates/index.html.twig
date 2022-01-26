@@ -1,20 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block contenido %} 
-    
-    <!-- Presentacion --> 
-    {% include "default/presentacion.html.twig" %}
-    <!-- Presentacion -->   
-
-    <!-- Productos Destacados -->
-    {% if productos|length > 0 %}
-     {% include "default/sliderDestacados.html.twig" with { 'producto': productos ,'mensaje' : 'Nuestros Productos'  } %}
-    {% endif %}
-    <!-- Productos Destacados -->
-
-    <!-- Productos --> 
-    {% include "Producto/listarProductos.html.twig" with { 'productos' : productos  } %}
-    <!-- Productos -->
- 
-
+ <!-- Presentacion --> 
+ {% include "default/presentacion.html.twig" %}
+ <!-- Presentacion -->   
+ <!-- Productos Destacados -->
+ {% if productos|length > 0 %}
+ {% include "default/sliderDestacados.html.twig" with { 'producto': productos ,'mensaje' : 'Nuestros Productos'  } %}
+ {% endif %}
+ <!-- Productos Destacados -->
+ <!-- Productos --> 
+ {% include "Producto/listarProductos.html.twig" with { 'productos' : productos  } %}
+ <!-- Productos -->
 {% endblock %}
