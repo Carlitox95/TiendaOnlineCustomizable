@@ -15,30 +15,30 @@ use App\Form\ProductosCarritoType;
 class CarritoController extends AbstractController
 {
    /**
-   * @Route("/carrito", name="carrito")
-   */
-   //Funcion para ver el carrito de compras del usuario logueado
-   public function index(): Response {
-    //Obtengo el EntityManager
-    $em = $this ->getDoctrine()->getManager();
-    //Obtengo el usuario logueado
-    $usuarioLogueado=$this->get('security.token_storage')->getToken()->getUser();
-    //Obtengo el Carrito de compras de mi usuario
-    $carrito=$usuarioLogueado->getCarrito();
+  * @Route("/carrito", name="carrito")
+  */
+  //Funcion para ver el carrito de compras del usuario logueado
+  public function index(): Response {
+   //Obtengo el EntityManager
+   $em = $this ->getDoctrine()->getManager();
+   //Obtengo el usuario logueado
+   $usuarioLogueado=$this->get('security.token_storage')->getToken()->getUser();
+   //Obtengo el Carrito de compras de mi usuario
+   $carrito=$usuarioLogueado->getCarrito();
 
-      //Si el carrito no existe lo creo por unica vez
-      if(!$usuarioLogueado->getCarrito()) {
-       $carrito=$this->crearCarrito($usuarioLogueado);         
-      }
+    //Si el carrito no existe lo creo por unica vez
+    if(!$usuarioLogueado->getCarrito()) {
+     $carrito=$this->crearCarrito($usuarioLogueado);         
+    }
         
    
-      //Retorno la vista
-      return $this->render('Carrito/index.html.twig', 
-         [
-          'carrito' => $carrito,
-         ]
-      );
-   }
+    //Retorno la vista
+    return $this->render('Carrito/index.html.twig', 
+      [
+       'carrito' => $carrito,
+      ]
+    );
+  }
 
 
   //Funcion que me crea un carrito de compras en caso de que no exista
@@ -61,7 +61,7 @@ class CarritoController extends AbstractController
   
   //Funcion que valida el stock de un Producto antes de comprar
   private function validarStockProducto($unProducto,$unaCantidad) {
-    if($unProducto->getStock() > $unaCantidad ) {
+    if($unProducto->getStock() >= $unaCantidad ) {
      return true;
     }
     else {

@@ -53,6 +53,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $ventas;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Direccion::class, cascade={"persist", "remove"})
+     */
+    private $direccion;
+
     public function __construct()
     {
         $this->ventas = new ArrayCollection();
@@ -210,6 +215,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $venta->setUsuario(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDireccion(): ?Direccion
+    {
+        return $this->direccion;
+    }
+
+    public function setDireccion(?Direccion $direccion): self
+    {
+        $this->direccion = $direccion;
 
         return $this;
     }

@@ -81,6 +81,28 @@ class ProductoController extends AbstractController
     );
   }
 
+  /**
+  * Require ROLE_ADMIN for only this controller method.
+  *
+  * @Route("/app/producto/ver/{idProducto}", name="producto_ver_abm")
+  *
+  * @IsGranted("ROLE_ADMIN")
+  */
+  //Funcion para listar todos los productos disponibles
+  public function verProductoAbm($idProducto): Response {
+   //Obtengo el EntityManager
+   $em = $this ->getDoctrine()->getManager();     
+   //Obtengo el producto a mostrar
+   $producto=$em->getRepository(Producto::class)->find($idProducto);
+
+    //Retorno a la vista
+    return $this->render('Producto/verAbm.html.twig', 
+      [
+       'producto' => $producto,
+      ]
+    );
+  }
+
    
   /**
   * Require ROLE_ADMIN for only this controller method.
@@ -134,7 +156,7 @@ class ProductoController extends AbstractController
         } 
         catch (FileException $e) {
          $this->addFlash('aviso','Error al cargar la imagen');
-         //Redirecciono al listado 
+         //Redirecciono al listado          
          return $this->redirectToRoute('producto_abm');
         }             
       }
@@ -143,6 +165,8 @@ class ProductoController extends AbstractController
      $entityManager->persist($producto);
      //Asiento los cambios en la base de datos
      $entityManager->flush();
+     //Aviso
+     $this->addFlash('exito','El producto se creo correctamente');
      //Redirecciono al listado 
      return $this->redirectToRoute('producto_abm');
     }
@@ -218,7 +242,7 @@ class ProductoController extends AbstractController
      //Le doy persistencia 
      $entityManager->persist($producto);
      //Asiento los cambios en la base de datos
-     $entityManager->flush();
+     $entityManager->flush();     
      //Redirecciono al listado 
      return $this->redirectToRoute('producto_abm');
     }

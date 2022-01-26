@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Vista del Producto para Administracion'  } %}
+    
+<!-- Acciones del Producto -->
+    {% if app.user %}
+        {% if producto.stock > 0 %}
+            <div class="row">
+                <ul class="collection">
+                    <li class="collection-item grey lighten-3">   
+                        {% if is_granted('ROLE_ADMIN') %}
+                         <a href="{{ path('producto_editar',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn colorOficial white-text"><i class="material-icons left">edit</i>Editar</a> 
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+    {% endif %}
+<!-- Acciones del Producto -->
+
+    
+<!-- Muestro el Producto -->
+<div class="row">
+
+    <!-- Detalles de Producto -->   
+    <div class="col s12">
+        <ul class="collection with-header">   
+         <li class="collection-header"><h5>Producto</h5></li>        
+         <li class="collection-item"><strong><i class="material-icons left">info</i> ID:</strong> {{ producto.id }} </li>   
+         <li class="collection-item"><strong><i class="material-icons left">assignment</i> Producto:</strong> {{ producto.nombre }} </li> 
+         <li class="collection-item"><strong><i class="material-icons left">confirmation_number</i> Codigo Producto:</strong> {{ producto.codigo }}</li>   
+         <li class="collection-item"><strong><i class="material-icons left">attach_money</i> Precio Unitario:</strong> ${{ producto.precio }} </li>
+         
+            {% if producto.stock > 0 %}
+             <li class="collection-item light-green accent-3"><strong><i class="material-icons left">av_timer</i> Stock:</strong> {{ producto.stock }} Unidades </li>
+            {% else %}
+             <li class="collection-item red lighten-1"><strong><i class="material-icons left">av_timer</i> Stock:</strong> {{ producto.stock }} Unidades </li>
+            {% endif %}        
+
+            {% if producto.activo == true %}  
+             <li class="collection-item light-green accent-3"><strong><i class="material-icons left">info</i> ¿Esta a la Venta?: SI</strong> </li>     
+            {% else %} 
+             <li class="collection-item red lighten-1"><strong><i class="material-icons left">info</i> ¿Esta a la Venta?: NO</strong> </li>     
+            {% endif %}
+
+            {% if producto.destacado == true %} 
+             <li class="collection-item light-green accent-3"><strong><i class="material-icons left">info</i> ¿Producto Destacado?: SI</strong> </li>     
+            {% else %} 
+             <li class="collection-item"><strong><i class="material-icons left">info</i> ¿Producto Destacado?: NO</strong> </li>     
+            {% endif %}
+
+         <li class="collection-item"><strong><i class="material-icons left">art_track</i> Categorias:</strong> </li>
+         <li class="collection-header"><h5>Descripcion del Producto</h5></li>
+         <li class="collection-item"><strong><i class="material-icons left">info</i> Descripcion:</strong> {{ producto.descripcion }}</li>     
+         <li class="collection-item"><strong><i class="material-icons left">info</i> Detalle:</strong> {{ producto.descripcionCompleta }}</li>
+        </ul>
+    </div>
+    <!-- Detalles de Producto -->
+    
+</div>
+<!-- Muestro el Producto -->    
+
+
+<!-- Fotos -->
+<div class="row">
+
+ {% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Imagenes del Producto'  } %}
+
+  {% if producto.getImagens()|length > 0 %}      
+    <!-- Iteramos sobre todas las imagenes conseguidas -->      
+      {% for imagen in producto.getImagens() %}
+        <div class="col s12 m6 l4">              
+         <img class="imagenProducto redondearBordes" src="{{ asset(imagen.url) }}">
+         <a href="{{ path('imagen_eliminar',{'idImagen': imagen.id}) }}" title="Eliminar Imagen" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">remove</i></a> 
+        </div>
+      {% endfor %}
+    <!-- Iteramos sobre todas las imagenes conseguidas -->        
+  {% else %}
+    <blockquote class="textoBlockquote grey lighten-2">
+     <br>
+     <p><strong><i class="material-icons left">info</i> No hay imagenes para eliminar del Producto!</strong></p>
+     <br>
+    </blockquote>
+  {% endif %}
+</div>
+<!-- Fotos -->
+
+<!-- Botones de Direccionamiento -->
+<div class="offset-s2 col s8 offset-s2">
+    <center>        
+        <a href="{{ path('producto_abm') }}" class="waves-effect waves-light btn colorOficial white-text">
+         <i class="material-icons left">assignment</i>Volver 
+        </a> 
+        <a href="{{ path('index') }}" class="waves-effect waves-light btn colorOficial white-text">
+         <i class="material-icons left">home</i>Volver al Home
+        </a> 
+    </center>
+</div>
+<!-- Botones de Direccionamiento -->
+
+<br>
+<br>
+
+{% endblock %}
+

@@ -1,12 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block contenido %} 
-
-{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Mis Compras'  } %}
     
-<!-- Listar Ventas del Usuario -->
- {% include "Venta/listarVentas.html.twig" with { 'ventas' : ventas  } %}
-<!-- Listar Ventas del Usuario -->
+<!-- Datos de la Venta -->
+ {% include "Venta/verVenta.html.twig" with { 'venta' : venta  } %}
+<!-- Datos de la Venta -->
 
 <!-- Botones de Direccionamiento -->
 <div class="offset-s2 col s8 offset-s2">

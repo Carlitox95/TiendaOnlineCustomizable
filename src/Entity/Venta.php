@@ -25,19 +25,24 @@ class Venta
     private $fecha;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="ventas")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="ventas")
      */
-    private $usuario;
-
-    /**
-     * @ORM\OneToOne(targetEntity=estadoventa::class, cascade={"persist", "remove"})
-     */
-    private $estado;
+    private $usuario;    
 
     /**
      * @ORM\Column(type="object")
      */
     private $articulos;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $precio;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Estadoventa::class, inversedBy="ventas")
+     */
+    private $estado;
 
     
 
@@ -75,17 +80,7 @@ class Venta
         return $this;
     }
 
-    public function getEstado(): ?estadoventa
-    {
-        return $this->estado;
-    }
-
-    public function setEstado(?estadoventa $estado): self
-    {
-        $this->estado = $estado;
-
-        return $this;
-    }
+    
 
     public function getArticulos()
     {
@@ -95,6 +90,30 @@ class Venta
     public function setArticulos($articulos): self
     {
         $this->articulos = $articulos;
+
+        return $this;
+    }
+
+    public function getPrecio(): ?float
+    {
+        return $this->precio;
+    }
+
+    public function setPrecio(float $precio): self
+    {
+        $this->precio = $precio;
+
+        return $this;
+    }
+
+    public function getEstado(): ?Estadoventa
+    {
+        return $this->estado;
+    }
+
+    public function setEstado(?Estadoventa $estado): self
+    {
+        $this->estado = $estado;
 
         return $this;
     }
