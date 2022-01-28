@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+    
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Ventas realizadas en Sistema'  } %}
+
+{% include "default/alertasFlash.html.twig" %}
+
+<div class="row">
+{% if ventas|length > 0 %} 
+    <table id="tabla" class="highlight">
+        <thead class="grey white-text">
+         <tr>
+         <td><strong>Fecha</strong></td>
+         <td><strong>Monto</strong></td>
+         <td><strong>Estado</strong></td> 
+         <td><strong>Cliente</strong></td>  
+         <td><strong>Pago</strong></td>
+         <td><strong>Acciones</strong></td>  
+         </tr>
+        </thead>
+        <tbody>
+         {% for venta in ventas %}
+         <tr class="grey lighten-4">
+         <td>{{ venta.fecha|date("d/m/Y") }}</td>
+         <td>${{ venta.precio }}</td>
+         <td>{{ venta.estado }}</td>
+         <td>{{ venta.getUsuario() }}</td>
+         <td><strong>PENDIENTE</strong></td>
+            <td>
+             <a href="{{ path('venta_ver',{'idVenta': venta.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Ver"><i class="material-icons">visibility</i></a>  
+            </td>                       
+        </tr>   
+         {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+</div>
+   
+
+<br>
+
+<!-- Botones de Direccionamiento -->
+<div class="offset-s2 col s8 offset-s2">
+    <center>
+        <a href="{{ path('user') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+          <i class="material-icons left">arrow_back</i>Volver
+        </a> 
+    </center>
+</div>
+<!-- Botones de Direccionamiento -->
+
+<br>
+<br>
+
+{% endblock %}
+
