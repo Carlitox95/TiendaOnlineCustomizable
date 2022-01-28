@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException; 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,6 +19,29 @@ use Doctrine\Common\Collections\Collection;
 
 class VentaController extends AbstractController
 {
+
+
+   /**
+   * Require ROLE_ADMIN for only this controller method.
+   *
+   * @Route("/app/ventas", name="venta_abm")
+   *
+   * @IsGranted("ROLE_ADMIN")
+   */
+   //Funcion para listar las ventas en el sistema 
+   public function listarVentasAbm(): Response {
+    //Obtengo el EntityManager
+    $em= $this ->getDoctrine()->getManager(); 
+    //Obtengo las ventas del sistema
+    $ventas= $em->getRepository(Venta::class)->findAll();
+
+      //Retorno a la vista
+      return $this->render('Venta/gestionarVentas.html.twig', 
+         [
+          'ventas' => $ventas,
+         ]
+      );
+   }
 
    /**
    *
