@@ -112,7 +112,7 @@ let coincidencias=0;
              productos[i].style.display="block";
              coincidencias++;
              //Quito el cartel de aviso
-             //document.getElementById("mensajeBuscador").innerHTML=null;
+             document.getElementById("mensajeBuscador").innerHTML=null;
             } 
             else {
              //Si no coincide con la busqueda oculto el contenido
@@ -122,6 +122,6 @@ let coincidencias=0;
     }    
     //Si la caja de tramites me queda vacia... no hay resultadas de la busqueda
     if (coincidencias==0) {
-     //document.getElementById("mensajeBuscador").innerHTML="<strong><i class='material-icons'>error</i> No se encontraron resultados para la busqueda</strong>";
+     document.getElementById("mensajeBuscador").innerHTML="<strong><i class='material-icons'>error</i> No se encontraron resultados para la busqueda</strong>";
     }      
 }
