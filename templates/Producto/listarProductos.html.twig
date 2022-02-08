@@ -1,15 +1,33 @@
-<!-- Muestro los Productos -->
+
 <div class="row gradiente1">
  <br>
  <center><h4>Nuestros Productos</h4></center>
  <br>
 </div>
 
-<div class="row">
 
-    {% if productos|length > 0 %}
-    {% for producto in productos %}
-        <div class="col s12 m6 l6">
+<!-- Buscador de Productos -->
+<div class="row"> 
+    <ul class="collection">
+        <li class="collection-item">
+            <div class="row">
+                <div class="input-field col s12">
+                 <i class="material-icons prefix">search</i>
+                 <input id="parametroBusquedaProducto" type="text" class="validate" onkeyup="buscadorProducto();" >
+                 <label for="parametroBusquedaProducto">Buscar Producto</label>
+                 </div>
+            </div>
+        </li>
+    </ul>
+</div>   
+<!-- Buscador de Productos -->
+
+
+<!-- Muestro los Productos -->
+<div class="row">
+    {% if productos|length > 0 %}    
+    {% for producto in productos %}        
+        <div class="col s12 m6 l6" name="productos" id="{{ producto.id }}" productoNombre="{{ producto.nombre }}">
         <div class="card sticky-action">
             <div class="card-image waves-effect waves-block waves-light">
                 {% if producto.getImagens()|length > 0 %}
@@ -17,9 +35,8 @@
                  <img class="imagenProducto" src="{{ asset(imagen.url) }}">             
                 {% else %}
                  <img class="imagenProducto" src="{{ asset('img/imagen-no-disponible.png') }}">
-                {% endif %}
-                
-                 <span class="card-title precioSobreImagen">${{ producto.precio }}</span>
+                {% endif %}                
+             <span class="card-title precioSobreImagen">${{ producto.precio }}</span>
             </div>
             <div class="card-content contenidoDatosProductos">
               <span class="card-title activator grey-text text-darken-4">{{ producto.nombre }} <i class="material-icons right">more_vert</i></span>
@@ -36,8 +53,8 @@
               <p>{{ producto.descripcionCompleta }}</p>
             </div>
         </div>
-        </div>        
-    {% endfor %}
+        </div>             
+    {% endfor %}     
     {% else %}
      <br>
      <center><p>No hay productos por el momento , disculpe las molestias</p></center>
