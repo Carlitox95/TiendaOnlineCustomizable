@@ -89,4 +89,3 @@ $(document).ready(function() {
  $('#tabla_filter').addClass("col s4");           
 });    
 
-

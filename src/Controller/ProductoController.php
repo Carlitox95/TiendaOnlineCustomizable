@@ -278,13 +278,12 @@ class ProductoController extends AbstractController
     if ($form->isSubmitted() && $form->isValid()) {
      //Obtengo el producto del formulario
      $producto = $form->getData();
-
      //Le doy persistencia 
      $entityManager->persist($producto);
      //Asiento los cambios en la base de datos
      $entityManager->flush();
      //Aviso
-     $this->addFlash('aviso','Se actualizaron las categorias');        
+     $this->addFlash('aviso','Se actualizaron las categorias del Producto '.$producto->getNombre());    
      //Redirecciono al listado 
      return $this->redirectToRoute('producto_abm');
     }

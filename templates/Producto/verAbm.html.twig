@@ -27,7 +27,7 @@
     <!-- Detalles de Producto -->   
     <div class="col s12">
         <ul class="collection with-header">   
-         <li class="collection-header"><h5>Producto</h5></li>        
+         <li class="collection-header"><strong>Producto</strong></li>        
          <li class="collection-item"><strong><i class="material-icons left">info</i> ID:</strong> {{ producto.id }} </li>   
          <li class="collection-item"><strong><i class="material-icons left">assignment</i> Producto:</strong> {{ producto.nombre }} </li> 
          <li class="collection-item"><strong><i class="material-icons left">confirmation_number</i> Codigo Producto:</strong> {{ producto.codigo }}</li>   
@@ -51,8 +51,18 @@
              <li class="collection-item"><strong><i class="material-icons left">info</i> ¿Producto Destacado?: NO</strong> </li>     
             {% endif %}
 
-         <li class="collection-item"><strong><i class="material-icons left">art_track</i> Categorias:</strong> </li>
-         <li class="collection-header"><h5>Descripcion del Producto</h5></li>
+
+            {% if producto.getCategorias()|length > 0 %}   
+             <li class="collection-header"><strong><i class="material-icons left">art_track</i> Categorias</strong></li>
+                {% for categoria in producto.getCategorias() %}
+                 <li class="collection-item"><i class="material-icons left">info</i> {{ categoria.nombre }} </li>
+                {% endfor %}
+            {% else %}
+             <li class="collection-header"><strong><i class="material-icons left">art_track</i> Categorias</strong></li>
+             <li class="collection-item"><strong><i class="material-icons left">info</i> El Producto no esta categorizado</strong></li>
+            {% endif %}
+          
+         <li class="collection-header"><strong>Descripcion del Producto</strong></li>
          <li class="collection-item"><strong><i class="material-icons left">info</i> Descripcion:</strong> {{ producto.descripcion }}</li>     
          <li class="collection-item"><strong><i class="material-icons left">info</i> Detalle:</strong> {{ producto.descripcionCompleta }}</li>
         </ul>
