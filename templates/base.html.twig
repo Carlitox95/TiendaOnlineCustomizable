@@ -57,7 +57,8 @@
                          <li><a href="{{ path('venta') }}"><i class="material-icons left">shop</i> Mis Compras</a></li>
                          <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>
                             {% if is_granted('ROLE_ADMIN') %}
-                             <li><a class="dropdown-trigger" href="#!" data-target="dropdownProductos">Productos<i class="material-icons right">arrow_drop_down</i></a></li>                 
+                             {# <li><a class="dropdown-trigger" href="#!" data-target="dropdownProductos">Productos<i class="material-icons right">arrow_drop_down</i></a></li> #}
+                             <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
                              <li><a href="{{ path('user') }}"><i class="material-icons left">verified_user</i> {{ app.user.username }}</a></li>
                             {% else %}
                              <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
@@ -73,7 +74,8 @@
             </nav>
             </div>
             <!-- Nvar para VERSION ESCRITORIO -->
-
+            
+            {# 
             <!-- Menus Desplegables-->
             <ul id="dropdownProductos" class="dropdown-content">
              <li><a href="{{ path('producto') }}"><i class="material-icons left">new_releases</i>Listado</a></li>
@@ -86,6 +88,7 @@
              <li><a href="#"><i class="material-icons left">shopping_cart</i>Ofertas</a></li>                    
             </ul>
             <!-- Menus Desplegables-->
+            #}
 
             <!-- Menu Desplegable para VERSION MOVIL -->            
             <ul class="sidenav" id="mobile-demo"> 
@@ -94,7 +97,8 @@
                  <li><a href="{{ path('venta') }}"><i class="material-icons left">shop</i> Mis Compras</a></li>
                  <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>
                     {% if is_granted('ROLE_ADMIN') %}
-                     <li><a class="dropdown-trigger" href="#!" data-target="dropdownProductosMovil">Productos<i class="material-icons left">arrow_drop_down</i></a></li>                 
+                     {# <li><a class="dropdown-trigger" href="#!" data-target="dropdownProductosMovil">Productos<i class="material-icons left">arrow_drop_down</i></a></li> #}                 
+                     <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
                      <li><a href="{{ path('user') }}"><i class="material-icons left">verified_user</i> {{ app.user.username }}</a></li>
                     {% else %}                     
                      <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
