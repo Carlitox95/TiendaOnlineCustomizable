@@ -4,12 +4,19 @@
  <!-- Presentacion --> 
  {% include "default/presentacion.html.twig" %}
  <!-- Presentacion -->   
- <!-- Productos Destacados -->
- {% if productos|length > 0 %}
- {% include "default/sliderDestacados.html.twig" with { 'producto': productos ,'mensaje' : 'Nuestros Productos'  } %}
- {% endif %}
- <!-- Productos Destacados -->
+ 
+    <!-- Productos Destacados -->
+    {% if productos|length > 0 %}
+     {% include "default/sliderDestacados.html.twig" with { 'producto': productos ,'mensaje' : 'Nuestros Productos'  } %}
+    {% endif %}
+    <!-- Productos Destacados -->
+ 
  <!-- Productos --> 
  {% include "Producto/listarProductos.html.twig" with { 'productos' : productos  } %}
  <!-- Productos -->
+ <!-- Redes Sociales -->
+ {% include "default/redesSociales.html.twig" with { 'productos' : productos  } %}
+ <!-- Redes Sociales -->
+
+
 {% endblock %}
