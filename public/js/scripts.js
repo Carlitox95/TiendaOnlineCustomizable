@@ -95,6 +95,15 @@ function quitarAcentos(cadena){
  return cadena.split('').map( letra => acentos[letra] || letra).join('').toString();    
 }
 
+
+jQuery(function($) { // DOM ready and $ alias secured
+
+  $('#parametroBusquedaProducto').on('keyup', function(e){
+    alert( e.key );
+  });
+
+});
+
 //Funcion para buscar productos
 function buscadorProducto() {
 //Obtengo los productos
