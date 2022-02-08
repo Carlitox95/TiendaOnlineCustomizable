@@ -1,0 +1,9 @@
+<div class="row"> 
+    <ul class="collection">
+        <li class="collection-item grey lighten-3">
+        {% for categoria in producto.getCategorias() %}   
+         <a class="waves-effect waves-light btn colorOficial white-text">#{{ categoria.nombre }}</a>
+        {% endfor %}
+        </li>
+    </ul>
+</div>   

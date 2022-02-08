@@ -82,32 +82,17 @@
 
 
 <!-- Galeria del Producto -->
-    {% if producto.getImagens()|length > 0 %}
-     {% include "Producto/sliderProducto.html.twig"  with { 'producto': producto ,'mensaje' : 'Galeria del Producto'  } %}
-    {% endif %} 
+{% if producto.getImagens()|length > 0 %}
+ {% include "Producto/sliderProducto.html.twig"  with { 'producto': producto ,'mensaje' : 'Galeria del Producto'  } %}
+{% endif %} 
 <!-- Galeria del Producto -->
 
 
 <!-- Categorias de Producto -->
 {% if producto.getCategorias()|length > 0 %}
-
-    <div class="row"> 
-        <ul class="collection">
-            <li class="collection-item grey lighten-3">
-            {% for categoria in producto.getCategorias() %}   
-             <a class="waves-effect waves-light btn colorOficial white-text">#{{ categoria.nombre }}</a>
-            {% endfor %}
-            </li>
-        </ul>
-    </div> 
-
-    
+ {% include "Producto/listarCategorias.html.twig"  with { 'producto': producto } %}  
 {% endif %} 
 <!-- Categorias de Producto -->
-
-
-
-
 
 
 <!-- Botones de Direccionamiento -->
