@@ -98,8 +98,8 @@ function quitarAcentos(cadena){
 
 jQuery(function($) { // DOM ready and $ alias secured
 
-  $('#parametroBusquedaProducto').on('keydown', function(e){
-    alert( e.which );
+  $('#parametroBusquedaProducto').on('keyup', function(e){
+    alert( e.key );
   });
 
 });
