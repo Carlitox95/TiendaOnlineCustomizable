@@ -7,14 +7,14 @@
  
     <!-- Productos Destacados -->
     {% if productos|length > 0 %}
-     {% include "default/sliderDestacados.html.twig" with { 'producto': productos ,'mensaje' : ''  } %}
+     {% include "default/sliderDestacados.html.twig" with { 'producto': productos ,'mensaje' : 'Calidad Garantizada' } %}
     {% endif %}
     <!-- Productos Destacados -->
  
  <!-- Productos --> 
  {% include "Producto/listarProductos.html.twig" with { 'productos' : productos  } %}
  <!-- Productos -->
- 
+
  <!-- Redes Sociales -->
  {% include "default/redesSociales.html.twig" with { 'productos' : productos  } %}
  <!-- Redes Sociales -->
