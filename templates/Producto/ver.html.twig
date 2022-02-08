@@ -27,7 +27,8 @@
 
     <!-- Detalles de Producto -->   
     <div class="col s6">
-        <ul class="collection">             
+        <ul class="collection with-header">  
+         <li class="collection-header"><strong>Producto</strong></li>           
          <li class="collection-item"><strong><i class="material-icons left">assignment</i> Producto:</strong> {{ producto.nombre }} </li> 
          <li class="collection-item"><strong><i class="material-icons left">confirmation_number</i> Codigo Producto:</strong> {{ producto.codigo }}</li>   
          <li class="collection-item"><strong><i class="material-icons left">attach_money</i> Precio Unitario:</strong> ${{ producto.precio }} </li>
@@ -51,7 +52,11 @@
                 {% else %} 
                  <li class="collection-item"><strong><i class="material-icons left">info</i> ¿Producto Destacado?: NO</strong> </li>     
                 {% endif %}
-            {% endif %}     
+            {% endif %}  
+
+         <li class="collection-header"><strong>Descripcion</strong></li>
+         <li class="collection-item"><strong><i class="material-icons left">info</i> Descripcion:</strong> {{ producto.descripcion }}</li>     
+         <li class="collection-item">{{ producto.descripcionCompleta }}</li>  
         </ul>
     </div>
     <!-- Detalles de Producto -->
@@ -67,15 +72,6 @@
     </div>
     <!-- Imagen del Producto -->
 
-    <!-- Descripcion del Producto -->
-    <div class="col s12">
-        <ul class="collection with-header">
-         <li class="collection-header"><strong>Descripcion del Producto</strong></li>
-         <li class="collection-item"><strong><i class="material-icons left">info</i> Descripcion:</strong> {{ producto.descripcion }}</li>     
-         <li class="collection-item"><strong><i class="material-icons left">info</i> Detalle:</strong> {{ producto.descripcionCompleta }}</li>     
-        </ul>
-    </div>
-    <!-- Descripcion del Producto -->
         
 </div>
 <!-- Muestro el Producto -->    
