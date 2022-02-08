@@ -1,23 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block contenido %} 
- <!-- Presentacion --> 
- {% include "default/presentacion.html.twig" %}
- <!-- Presentacion -->   
+   <!-- Presentacion --> 
+    {% include "default/presentacion.html.twig" %}
+   <!-- Presentacion -->   
  
-    <!-- Productos Destacados -->
-    {% if productos|length > 0 %}
-     {% include "default/sliderDestacados.html.twig" with { 'producto': productos ,'mensaje' : 'Calidad Garantizada' } %}
-    {% endif %}
-    <!-- Productos Destacados -->
- 
- <!-- Productos --> 
- {% include "Producto/listarProductos.html.twig" with { 'productos' : productos  } %}
- <!-- Productos -->
+   <!-- Productos Destacados -->
+   {% if productos|length > 0 %}
+    {% include "default/sliderDestacados.html.twig" with { 'producto': productos ,'mensaje' : 'Calidad Garantizada' } %}
+   {% endif %}
+   <!-- Productos Destacados --> 
 
- <!-- Redes Sociales -->
- {% include "default/redesSociales.html.twig" with { 'productos' : productos  } %}
- <!-- Redes Sociales -->
-
-
+   <!-- Redes Sociales -->
+    {% include "default/redesSociales.html.twig" with { 'productos' : productos  } %}
+   <!-- Redes Sociales -->
+   
+   <!-- Productos --> 
+    {% include "Producto/listarProductos.html.twig" with { 'productos' : productos  } %}
+   <!-- Productos -->
 {% endblock %}
