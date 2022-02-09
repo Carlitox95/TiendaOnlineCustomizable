@@ -28,7 +28,7 @@ class CategoriaController extends AbstractController
      $categorias=$em->getRepository(Categoria::class)->findAll();
 
         //Retorno la vista
-        return $this->render('categoria/index.html.twig', [
+        return $this->render('Categoria/index.html.twig', [
             'categorias' => $categorias,
         ]);
     }
@@ -48,7 +48,7 @@ class CategoriaController extends AbstractController
      $categoria=$em->getRepository(Categoria::class)->find($idCategoria);
 
         //Retorno a la vista
-        return $this->render('categoria/ver.html.twig', 
+        return $this->render('Categoria/ver.html.twig', 
             [
              'categoria' => $categoria,
             ]
@@ -85,7 +85,7 @@ class CategoriaController extends AbstractController
         }
 
         //Retorno la vista
-        return $this->render('categoria/nueva.html.twig', 
+        return $this->render('Categoria/nueva.html.twig', 
             [             
              'form' => $form->createView(),             
             ]
@@ -126,7 +126,7 @@ class CategoriaController extends AbstractController
         }
 
         //Redirecciono a la vista      
-        return $this->render('categoria/editar.html.twig', 
+        return $this->render('Categoria/editar.html.twig', 
             [
              'form' => $form->createView(),
              'categoria' => $categoria,
