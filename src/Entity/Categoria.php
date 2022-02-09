@@ -31,14 +31,18 @@ class Categoria
     private $descripcion;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Producto::class, inversedBy="categorias")
+     * @ORM\ManyToMany(targetEntity=Producto::class, mappedBy="categorias")
      */
-    private $producto;
+    private $productos;
 
     public function __construct()
     {
-        $this->producto = new ArrayCollection();
+        $this->productos = new ArrayCollection();
     }
+
+    
+
+    
 
     public function getId(): ?int
     {
@@ -72,15 +76,16 @@ class Categoria
     /**
      * @return Collection|Producto[]
      */
-    public function getProducto(): Collection
+    public function getProductos(): Collection
     {
-        return $this->producto;
+        return $this->productos;
     }
 
     public function addProducto(Producto $producto): self
     {
-        if (!$this->producto->contains($producto)) {
-            $this->producto[] = $producto;
+        if (!$this->productos->contains($producto)) {
+            $this->productos[] = $producto;
+            $producto->addCategoria($this);
         }
 
         return $this;
@@ -88,8 +93,11 @@ class Categoria
 
     public function removeProducto(Producto $producto): self
     {
-        $this->producto->removeElement($producto);
+        if ($this->productos->removeElement($producto)) {
+            $producto->removeCategoria($this);
+        }
 
         return $this;
     }
+
 }

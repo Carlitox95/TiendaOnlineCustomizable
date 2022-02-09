@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Entity\Producto;
+use App\Entity\Categoria;
 use App\Entity\Imagen;
 use App\Form\ProductoType;
 use App\Form\ProductoCategoriaType;
@@ -268,9 +269,11 @@ class ProductoController extends AbstractController
    //Obtengo el EntityManager
    $entityManager=$this->getDoctrine()->getManager();
    //Obtengo el producto seleccionado
-   $producto=$entityManager->getRepository(Producto::class)->find($idProducto);   
+   $producto=$entityManager->getRepository(Producto::class)->find($idProducto);  
+   //Obtengo las categorias
+   $categorias=$entityManager->getRepository(Categoria::class)->findAll();   
    //Defino el Formulario
-   $form = $this->createForm(ProductoCategoriaType::class, $producto);
+   $form = $this->createForm(ProductoCategoriaType::class,$producto);
    //Si se envia el formulario , existe un request
    $form->handleRequest($request);
 
