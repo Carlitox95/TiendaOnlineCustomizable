@@ -108,6 +108,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return (string) $this->username;
     }
+    
+    //Funcion que me dice si el usuario tiene rol admin
+    public function isAdmin() {
+     //Obtengo los roles
+     $rolesArray=$this->getRoles();
+     //Defino el flag para el rol
+     $flagAdmin=false;
+
+        foreach ($rolesArray as $rol) {
+            if($rol == "ROLE_ADMIN") {
+             $flagAdmin=true;
+             break;
+            }
+        }
+
+     return $flagAdmin;
+
+    }
+
 
     /**
      * @see UserInterface

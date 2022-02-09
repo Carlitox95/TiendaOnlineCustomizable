@@ -1,8 +1,9 @@
 <!-- Datos de la Venta -->
 <ul class="collection with-header">   
- <li class="collection-header"><h6>Venta</h6></li>          
+ <li class="collection-header"><h6>Compra</h6></li>          
  <li class="collection-item"><strong><i class="material-icons left">info</i> Fecha:</strong> {{ venta.fecha|date("d/m/Y") }} </li> 
  <li class="collection-item"><strong><i class="material-icons left">info</i> Estado:</strong> {{ venta.estado }} </li> 
+ <li class="collection-item"><strong><i class="material-icons left">person</i> Usuario:</strong> {{ venta.usuario.username }}</li>
  <li class="collection-item"><strong><i class="material-icons left">attach_money</i> Total a Pagar:</strong> ${{ venta.precio }}</li>   
  <li class="collection-header"><h6>Articulos</h6></li>  
 
