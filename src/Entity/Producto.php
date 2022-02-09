@@ -112,9 +112,6 @@ class Producto
      return $this;
     }
 
-
-   
-
     /**
      * @return Collection|Imagen[]
      */

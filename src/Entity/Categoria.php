@@ -40,10 +40,6 @@ class Categoria
         $this->productos = new ArrayCollection();
     }
 
-    
-
-    
-
     public function getId(): ?int
     {
         return $this->id;
