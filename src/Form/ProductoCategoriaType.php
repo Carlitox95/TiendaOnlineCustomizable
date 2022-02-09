@@ -23,17 +23,31 @@ class ProductoCategoriaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            
             ->add('categorias', EntityType::class, [    
                  'class' => Categoria::class,
                  'query_builder' => function (EntityRepository $er) {
                  return $er->createQueryBuilder('u')
                  ->orderBy('u.nombre', 'ASC');
                 },
+                
+                'required' => true,
                 'multiple' => true,
                 'expanded' => true,
                 'choice_label' => 'nombre',
                 'attr' => ['tipoInput' => 'multiple']
             ])
+            
+            /*
+            ->add('categorias', EntityType::class, [
+             'class' => Categoria::class,
+             'choices' => $categorias,
+             'multiple' => true,
+             'expanded' => true,
+             'choice_label' => 'nombre',
+             'attr' => ['tipoInput' => 'multiple']
+            ])
+            */
             ->add('save', SubmitType::class,array('label'=>'Guardar','attr' => ['class' => 'waves-effect waves-light btn colorOficial white-text','tipoInput' => 'button'])); 
         ;
     }
