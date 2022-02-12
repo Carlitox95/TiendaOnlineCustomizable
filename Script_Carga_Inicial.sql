@@ -19,3 +19,9 @@ INSERT INTO `estadoventa` (`id`, `estado`) VALUES(5,'RECHAZADA');
 --
 
 INSERT INTO `configuracion` (`id`, `mensaje`, `activo`, `tipo`) VALUES (1, 'Somos una Tienda que busca....  \r\nvender muchos productos y hacer dinero , con eso tener mas stock y mejores productos , para hacer mas dinero, porque me gusta el dinero\r\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text...\r\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text...\r\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text...', 1, '¿Quienes Somos? Mensaje Principal de la Home');
+
+--
+-- Volcado de datos para la tabla `parametro`
+--
+
+INSERT INTO `parametro` (`id`, `nombre`, `activo`) VALUES (1, 'Activar Ventas', 1);

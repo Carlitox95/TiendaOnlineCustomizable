@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+ 
+          
+{% block contenido %}
+
+ {% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Configurar Parametros'  } %}
+
+ {% include "default/alertasFlash.html.twig" %}
+
+  <!-- Muestro todos los Parametros -->
+  <ul class="collection with-header">
+    <li class="collection-header"><strong>Parametros</strong></li>
+    {% for parametro in parametros %}
+      <li class="collection-item">
+        <strong><i class="material-icons left">info</i> {{ parametro.nombre }}           
+        </strong>   
+        <div class="secondary-content"> 
+          <a href="{{ path('parametro_edit',{'idParametro': parametro.id}) }}">
+           {% if parametro.activo == 1 %} 
+            <i class="material-icons right">check_box</i> 
+          {% else %} 
+            <i class="material-icons right">check_box_outline_blank</i> 
+          {% endif %}
+          </a>         
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+  <!-- Muestro todos los Parametros -->
+
+
+
+  <!-- Botones de Direccionamiento -->
+  <div class="offset-s2 col s8 offset-s2">
+    <center>
+        <a href="{{ path('user') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+          <i class="material-icons left">home</i>Volver
+        </a> 
+    </center>
+  </div>
+  <!-- Botones de Direccionamiento -->
+
+
+{% endblock contenido %}            
+
