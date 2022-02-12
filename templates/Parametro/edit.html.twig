@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+    
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : parametro.nombre  } %}
+
+{% include "default/alertasFlash.html.twig" %}
+
+
+<!-- Formulario para Producto -->
+<ul class="collection with-header">
+   <li class="collection-header"><h6>Editar Parametro del Sistema</h6></li>
+   <!-- Entradas del Formulario -->
+   <li class="collection-item">  
+    {% include "default/formularioConFormato.html.twig"  with { 'form': form} %} 
+    {# {{ form(form) }} #}
+   </li>     
+   <!-- Entradas del Formulario -->
+</ul>
+<!-- Formulario para Producto -->
+
+<!-- Botones de Direccionamiento -->
+<div class="offset-s2 col s8 offset-s2">
+    <center>
+      <a href="{{ path('parametro') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+       <i class="material-icons left">assignment</i>Volver 
+      </a> 
+    </center>
+</div>
+<!-- Botones de Direccionamiento -->
+
+<br>
+<br>
+
+{% endblock %}
+

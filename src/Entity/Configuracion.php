@@ -72,4 +72,5 @@ class Configuracion
 
         return $this;
     }
+
 }

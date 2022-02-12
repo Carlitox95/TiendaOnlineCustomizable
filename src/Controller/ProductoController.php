@@ -19,6 +19,7 @@ use App\Entity\Imagen;
 use App\Form\ProductoType;
 use App\Form\ProductoCategoriaType;
 use App\Form\ProductoCategoriasType;
+use App\Entity\Parametro;
 
 
 class ProductoController extends AbstractController
@@ -73,11 +74,14 @@ class ProductoController extends AbstractController
    $em = $this ->getDoctrine()->getManager();     
    //Obtengo el producto a mostrar
    $producto=$em->getRepository(Producto::class)->find($idProducto);
+   //Obtengo la configuracion de ventas
+   $flagVentas=$em->getRepository(Parametro::class)->find(1);  
 
     //Retorno a la vista
     return $this->render('Producto/ver.html.twig', 
       [
        'producto' => $producto,
+       'flagVentas' => $flagVentas,
       ]
     );
   }

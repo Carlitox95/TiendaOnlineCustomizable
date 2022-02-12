@@ -4,18 +4,21 @@
     
 <!-- Acciones del Producto -->
     {% if app.user %}
-        {% if producto.stock > 0 %}
+        {% if producto.stock > 0 %} 
+            {% if flagVentas.activo == 1 or is_granted('ROLE_ADMIN') %}           
             <div class="row">
                 <ul class="collection">
                     <li class="collection-item grey lighten-3">
-                     <a href="{{ path('carritoproductos_agregar',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn colorOficial white-text"><i class="material-icons left">add_shopping_cart</i>Comprar</a> 
-                       
+                        {% if flagVentas.activo == 1 %}
+                         <a href="{{ path('carritoproductos_agregar',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn colorOficial white-text"><i class="material-icons left">add_shopping_cart</i>Comprar</a> 
+                        {% endif %}
                         {% if is_granted('ROLE_ADMIN') %}
                          <a href="{{ path('producto_editar',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn colorOficial white-text"><i class="material-icons left">edit</i>Editar</a> 
                         {% endif %}
                     </li>
                 </ul>
             </div>
+            {% endif %}
         {% endif %}
     {% endif %}
 <!-- Acciones del Producto -->
