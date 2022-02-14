@@ -32,8 +32,21 @@ class DefaultController  extends AbstractController {
     }
 
     public function home(): Response  { 
-     //Retorno la vista
-     return $this->render('Home/index.html.twig');
+     //Obtengo el EntityManager
+     $em = $this ->getDoctrine()->getManager();     
+     //Obtengo todos los Productos   
+     $productos=$em->getRepository(Producto::class)->findByProductosDestacados(); 
+     //Obtengo los Mensajes de la Home Principal
+     $mensajeHome=$em->getRepository(Configuracion::class)->find(1); 
+
+     
+        //Retorno a la vista
+        return $this->render('index.html.twig', 
+            [
+             'productos' => $productos,
+             'mensajeHome' => $mensajeHome,             
+            ]
+        );
     }
 
 }
