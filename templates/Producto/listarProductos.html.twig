@@ -5,6 +5,20 @@
  <br>
 </div>
 
+<!-- Visualizador de Categorias -->
+{% if categorias|length > 0 %}
+<div class="row"> 
+    <ul class="collection">
+        <li class="collection-item grey lighten-3">
+        {% for categoria in categorias %}   
+         <a href="{{ path('producto_de_categoria',{'idCategoria': categoria.id}) }}" class="waves-effect waves-light btn-small colorOficial white-text">#{{ categoria.nombre }}</a>
+        {% endfor %}
+        </li>
+    </ul>
+</div>    
+{% endif %}
+<!-- Visualizador de Categorias -->               
+
 
 <!-- Buscador de Productos -->
 <div class="row"> 
@@ -26,7 +40,7 @@
 
 <!-- Muestro los Productos -->
 <div class="row">
-    {% if productos|length > 0 %}    
+{% if productos|length > 0 %}    
     {% for producto in productos %}        
         <div class="col s12 m6 l6" name="productos" id="{{ producto.id }}" productoNombre="{{ producto.nombre }}">
         <div class="card sticky-action">
@@ -41,25 +55,29 @@
             </div>
             <div class="card-content contenidoDatosProductos">
               <span class="card-title activator grey-text text-darken-4">{{ producto.nombre }} <i class="material-icons right">more_vert</i></span>
-              <p>{{ producto.descripcion }}</p>
-            </div>
+              <p>{{ producto.descripcion }}</p>             
+            </div>           
             <div class="card-action">
              <a href="{{ path('producto_ver',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn-small colorOficial white-text">Ver</a>
                 {% if is_granted('ROLE_ADMIN') %}
                  <a href="{{ path('producto_editar',{'idProducto': producto.id}) }}" class="waves-effect waves-light btn-small colorOficial white-text">Editar</a>
                 {% endif %}
-            </div>
+            </div>            
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">{{ producto.nombre }}<i class="material-icons right">close</i></span>
               <p>{{ producto.descripcionCompleta }}</p>
+              
+                {% if producto.getCategorias()|length > 0 %}
+                 {% include "Producto/listarCategorias.html.twig"  with { 'producto': producto } %}   
+                {% endif %}
             </div>
         </div>
         </div>             
     {% endfor %}     
-    {% else %}
-     <br>
-     <center><p>No hay productos por el momento , disculpe las molestias</p></center>
-     <br>
-    {% endif %}
+{% else %}
+ <br>
+ <center><p>No hay productos por el momento , disculpe las molestias</p></center>
+ <br>
+{% endif %}
 </div>
 <!-- Muestro los Productos -->

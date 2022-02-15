@@ -33,13 +33,38 @@ class ProductoController extends AbstractController
    //Obtengo todos los Productos que esten disponibles 
    $productos=$em->getRepository(Producto::class)->findByProductosDisponibles();
    //$productos=$em->getRepository(Producto::class)->findBy(['activo' => '1'],['destacado'=> 'DESC']);
+   //Obtengo todas las categorias existentes
+   $categorias=$em->getRepository(Categoria::class)->findBy([],['nombre'=> 'ASC']);
 
     //Retorno a la vista
     return $this->render('Producto/index.html.twig', 
       [
        'productos' => $productos,
+       'categorias' => $categorias,
       ]
     );
+  }
+  
+  /**
+  * @Route("/productos/categoria/{idCategoria}", name="producto_de_categoria")
+  */
+  public function listarProductosCategorias($idCategoria): Response {
+   //Obtengo el EntityManager
+   $em = $this ->getDoctrine()->getManager();    
+   //Obtengo la categoria del producto
+   $categoria=$em->getRepository(Categoria::class)->find($idCategoria); 
+   //Obtengo todos los productos de una categoria
+   $productos=$categoria->getProductos();
+   //Obtengo todas las categorias existentes
+   $categorias=$em->getRepository(Categoria::class)->findBy([],['nombre'=> 'ASC']);
+
+    //Retorno a la vista
+    return $this->render('Producto/index.html.twig', 
+      [
+       'productos' => $productos,
+       'categorias' => $categorias,
+      ]
+    ); 
   }
 
 
