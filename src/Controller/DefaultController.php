@@ -39,6 +39,8 @@ class DefaultController  extends AbstractController {
      $em = $this ->getDoctrine()->getManager();     
      //Obtengo todos los Productos   
      $productos=$em->getRepository(Producto::class)->findByProductosDestacados(); 
+     //Obtengo todas las categorias existentes
+     $categorias=$em->getRepository(Categoria::class)->findBy([],['nombre'=> 'ASC']);
      //Obtengo los Mensajes de la Home Principal
      $mensajeHome=$em->getRepository(Configuracion::class)->find(1); 
 
@@ -47,6 +49,7 @@ class DefaultController  extends AbstractController {
         return $this->render('index.html.twig', 
             [
              'productos' => $productos,
+             'categorias' => $categorias,
              'mensajeHome' => $mensajeHome,             
             ]
         );
