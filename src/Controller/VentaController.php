@@ -183,6 +183,15 @@ class VentaController extends AbstractController
    $entityManager = $this ->getDoctrine()->getManager();     
    //Obtengo el Usuario Logueado
    $usuarioLogueado=$this->get('security.token_storage')->getToken()->getUser();  
+    
+    //Si el usuario no completo su direccion de envio no lo dejo compra
+    if(!$usuarioLogueado->getDireccion()) {
+     //Aviso
+     $this->addFlash('aviso','No puede realizar compras hasta no haber ingresado su direccion');
+     //Redirecciono 
+     return $this->redirectToRoute('user');
+    }
+    
    //Creo la venta
    $venta=$this->crearVenta($usuarioLogueado);
    //Una vez creada debo resetear mi carrito de compras

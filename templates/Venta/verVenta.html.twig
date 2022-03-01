@@ -1,8 +1,8 @@
 <!-- Datos de la Venta -->
-<ul class="collection with-header">   
- <li class="collection-header"><h6>Compra</h6></li>          
- 
- 
+<ul class="collection with-header">  
+
+   {# Datos de la compra #}
+   <li class="collection-header"><h6>Compra</h6></li>     
    <li class="collection-item">
     <strong><i class="material-icons left">person</i> Usuario:</strong> {{ venta.usuario.username }}
     <div class="secondary-content"><strong><i class="material-icons left">date_range</i> Fecha:</strong> {{ venta.fecha|date("d/m/Y") }}</div>
@@ -11,12 +11,18 @@
     <strong><i class="material-icons left">info</i> Estado:</strong> {{ venta.estado }} 
     <div class="secondary-content"><strong><i class="material-icons left">attach_money</i>Total:</strong> ${{ venta.precio }}</div>
    </li> 
- <li class="collection-header"><h6>Articulos</h6></li>  
-
-   {# Si el carrito tiene productos los muestros #}    
+   {# Datos de la compra #}
+   {# Direccion del Usuario #}
+   <li class="collection-header"><h6>Direccion del Usuario</h6></li>
+   <li class="collection-item"><strong><i class="material-icons left">info</i>Calle: </strong> {{ venta.usuario.direccion.calle }} - Nro {{ venta.usuario.direccion.numero }} </li>
+   <li class="collection-item"><strong><i class="material-icons left">info</i>Entre Calles:</strong> {{ venta.usuario.direccion.entrecalle1 }} y {{ venta.usuario.direccion.entrecalle2 }} </li>
+   <li class="collection-item"><strong><i class="material-icons left">info</i>Codigo Postal:</strong> {{ venta.usuario.direccion.codigopostal }} <strong>- Localidad:</strong> {{ venta.usuario.direccion.ciudad }} <strong>- Provincia:</strong> {{ venta.usuario.direccion.provincia }}</li>
+   {# Direccion del Usuario #}
+   {# Si el carrito tiene productos los muestros #}   
+   <li class="collection-header"><h6>Articulos</h6></li>  
    {% if venta.getArticulos()|length > 0 %}        
       <table>
-      <thead class="collection-header">
+      <thead class="grey lighten-1">
          <tr>
           <td><strong>Producto</strong></td>
           <td><strong>Codigo</strong></td>
@@ -41,6 +47,6 @@
     <li class="collection-item"><strong><i class="material-icons left">shopping_cart</i>No hay productos en esta venta</strong></li>
    {% endif %}
    {# Si el carrito tiene productos los muestros #} 
-
+   
 </ul>
 <!-- Datos de la Venta -->

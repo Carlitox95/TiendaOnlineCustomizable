@@ -55,15 +55,12 @@
                      <li><a href="{{ path('index') }}"><i class="material-icons left">home</i>Home</a></li>                                           
                         {% if app.user %}
                          <li><a href="{{ path('venta') }}"><i class="material-icons left">shop</i> Mis Compras</a></li>
-                         <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>
-                            {% if is_granted('ROLE_ADMIN') %}
-                             {# <li><a class="dropdown-trigger" href="#!" data-target="dropdownProductos">Productos<i class="material-icons right">arrow_drop_down</i></a></li> #}
-                             <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
-                             <li><a href="{{ path('user') }}"><i class="material-icons left">verified_user</i> {{ app.user.username }}</a></li>
-                            {% else %}
-                             <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
-                             <li><a href="{{ path('user') }}"><i class="material-icons left">person</i> {{ app.user.username }}</a></li>
-                            {% endif %}
+                         <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>                            
+                         <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
+                         <li><a href="{{ path('user') }}"><i class="material-icons left">person</i> {{ app.user.username }}</a></li>
+                            {% if is_granted('ROLE_ADMIN') %}                             
+                             <li><a href="{{ path('admin') }}"><i class="material-icons left">build</i> Administracion</a></li>                             
+                            {% endif %}   
                          <li><a href="{{ path('app_logout') }}"><i class="material-icons left">exit_to_app</i> Salir</a></li>
                         {% else %}
                          <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
@@ -95,20 +92,17 @@
              <li><a href="{{ path('index') }}"><i class="material-icons left">home</i>Home</a></li>                          
                 {% if app.user %}
                  <li><a href="{{ path('venta') }}"><i class="material-icons left">shop</i> Mis Compras</a></li>
-                 <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>
-                    {% if is_granted('ROLE_ADMIN') %}
-                     {# <li><a class="dropdown-trigger" href="#!" data-target="dropdownProductosMovil">Productos<i class="material-icons left">arrow_drop_down</i></a></li> #}                 
-                     <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
-                     <li><a href="{{ path('user') }}"><i class="material-icons left">verified_user</i> {{ app.user.username }}</a></li>
-                    {% else %}                     
-                     <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
-                     <li><a href="{{ path('user') }}"><i class="material-icons left">person</i> {{ app.user.username }}</a></li>
-                    {% endif %}
+                 <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>                    
+                 <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
+                 <li><a href="{{ path('user') }}"><i class="material-icons left">person</i> {{ app.user.username }}</a></li>  
+                    {% if is_granted('ROLE_ADMIN') %}                             
+                     <li><a href="{{ path('admin') }}"><i class="material-icons left">build</i> Administracion</a></li>                             
+                    {% endif %} 
                  <li><a href="{{ path('app_logout') }}"><i class="material-icons left">exit_to_app</i> Salir</a></li>
                 {% else %}
                  <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
                  <li><a href="{{ path('app_login') }}"><i class="material-icons left">person</i> Ingresar</a></li>   
-                {% endif %}                
+                {% endif %}              
             </ul>     
             <!-- Menu Desplegable para VERSION MOVIL -->                
 
