@@ -44,6 +44,11 @@ class Venta
      */
     private $estado;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $comentario;
+
     
 
     public function __construct()
@@ -114,6 +119,18 @@ class Venta
     public function setEstado(?Estadoventa $estado): self
     {
         $this->estado = $estado;
+
+        return $this;
+    }
+
+    public function getComentario(): ?string
+    {
+        return $this->comentario;
+    }
+
+    public function setComentario(string $comentario): self
+    {
+        $this->comentario = $comentario;
 
         return $this;
     }
