@@ -29,6 +29,7 @@ class Estadoventa
      * @ORM\OneToMany(targetEntity=Venta::class, mappedBy="estado")
      */
     private $ventas;
+    
 
     public function __construct()
     {
@@ -86,6 +87,6 @@ class Estadoventa
     public function __toString()
     {
         return $this->getEstado();
-    }
+    }   
     
 }

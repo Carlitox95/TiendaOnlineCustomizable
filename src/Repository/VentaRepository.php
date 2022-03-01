@@ -19,22 +19,20 @@ class VentaRepository extends ServiceEntityRepository
         parent::__construct($registry, Venta::class);
     }
 
-    // /**
-    //  * @return Venta[] Returns an array of Venta objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return Venta[] Returns an array of Venta objects
+    */
+    
+    public function findByVentasPendientes()
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('v.estado = 1')            
             ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Venta
