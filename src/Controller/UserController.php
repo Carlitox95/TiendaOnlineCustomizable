@@ -25,18 +25,16 @@ class UserController extends AbstractController {
      $em = $this ->getDoctrine()->getManager();     
      //Obtengo el usuario logueado
      $usuarioLogueado=$this->get('security.token_storage')->getToken()->getUser();
-
      //Obtengo mi usuario de la BD
      $usuario=$em->getRepository(User::class)->find($usuarioLogueado->getId());
-
      //$usuario=$em->getRepository(User::class)->findOneBy(['username' => $usuarioLogueado->getUserName()]);    
      
-        //Retorno la vista
-        return $this->render('User/index.html.twig', 
-        	[             
-             'usuario' => $usuario,
-            ]
-        );
+      //Retorno la vista
+      return $this->render('User/index.html.twig', 
+      	[             
+         'usuario' => $usuario,
+        ]
+      );
     }
 
 
@@ -50,33 +48,31 @@ class UserController extends AbstractController {
      //Obtengo el usuario logueado
      $usuarioLogueado=$this->get('security.token_storage')->getToken()->getUser();
      //Obtengo mi usuario de la BD
-     $usuario=$em->getRepository(User::class)->find($usuarioLogueado->getId()); 
-      
+     $usuario=$em->getRepository(User::class)->find($usuarioLogueado->getId());       
      //Defino el Formulario
      $form = $this->createForm(UserCambiarMailType::class, $usuario);  
-
      //Si se envia el formulario , existe un request
      $form->handleRequest($request);
        
-       //Si se disparo el formulario y es valido
-        if ($form->isSubmitted() && $form->isValid()) {
-         //Obtengo el alumno del formulario
-         $usuario = $form->getData();
-         //Obtengo el EntityManager
-         $entityManager = $this->getDoctrine()->getManager();
-         //Le doy persistencia a la persona nueva
-         $entityManager->persist($usuario);
-         //Asiento los cambios en la base de datos
-         $entityManager->flush();
+      //Si se disparo el formulario y es valido
+      if ($form->isSubmitted() && $form->isValid()) {
+       //Obtengo el dato del formulario
+       $usuario = $form->getData();
+       //Obtengo el EntityManager
+       $entityManager = $this->getDoctrine()->getManager();
+       //Le doy persistencia
+       $entityManager->persist($usuario);
+       //Asiento los cambios en la base de datos
+       $entityManager->flush();
 
-         //Redirecciono al listado de personas
-         return $this->redirectToRoute('user');
-        }
+      //Redirecciono al listado de personas
+       return $this->redirectToRoute('user');
+      }
       
-        return $this->render('User/editar.html.twig', [
-         'form' => $form->createView(),
-         'usuario' => $usuario,
-        ]);
+      return $this->render('User/editar.html.twig', [
+       'form' => $form->createView(),
+       'usuario' => $usuario,
+      ]);
     }
 
     /**
@@ -92,30 +88,29 @@ class UserController extends AbstractController {
      $usuario=$em->getRepository(User::class)->find($usuarioLogueado->getId());
      //Defino el Formulario
      $form = $this->createForm(UserCambiarPasswordType::class, $usuario);  
-
      //Si se envia el formulario , existe un request
      $form->handleRequest($request);
        
-       //Si se disparo el formulario y es valido
-        if ($form->isSubmitted() && $form->isValid()) {
-         //Obtengo el alumno del formulario
-         $usuario = $form->getData();
-         //Obtengo el EntityManager
-         $entityManager = $this->getDoctrine()->getManager();
-         //Le doy persistencia a la persona nueva
-         $entityManager->persist($usuario);
-         //Asiento los cambios en la base de datos
-         $entityManager->flush();
+      //Si se disparo el formulario y es valido
+      if ($form->isSubmitted() && $form->isValid()) {
+       //Obtengo el alumno del formulario
+       $usuario = $form->getData();
+       //Obtengo el EntityManager
+       $entityManager = $this->getDoctrine()->getManager();
+       //Le doy persistencia a la persona nueva
+       $entityManager->persist($usuario);
+       //Asiento los cambios en la base de datos
+       $entityManager->flush();
 
-         //Redirecciono al listado de personas
-         return $this->redirectToRoute('user');
-        }
+       //Redirecciono al listado de personas
+       return $this->redirectToRoute('user');
+      }
         
-        //Retorno a la vista
-        return $this->render('User/editar.html.twig', [
-         'form' => $form->createView(),
-         'usuario' => $usuario,
-        ]);
+      //Retorno a la vista
+      return $this->render('User/editar.html.twig', [
+       'form' => $form->createView(),
+       'usuario' => $usuario,
+      ]);
     }
 
 
@@ -133,10 +128,10 @@ class UserController extends AbstractController {
      //Obtengo mi usuario de la BD
      $usuarios=$em->getRepository(User::class)->findAll();
 
-        //Retorno a la vista
-        return $this->render('User/panelUsuarios.twig', [
-         'usuarios' => $usuarios,
-        ]);          
+      //Retorno a la vista
+      return $this->render('User/panelUsuarios.twig', [
+       'usuarios' => $usuarios,
+      ]);          
     }
 
 
@@ -155,31 +150,29 @@ class UserController extends AbstractController {
      $usuario=$entityManager->getRepository(User::class)->find($idUser);   
      //Defino el Formulario
      $form = $this->createForm(UserRolesType::class, $usuario);
-
      //Si se envia el formulario , existe un request
      $form->handleRequest($request);
        
-       //Si se disparo el formulario y es valido
-        if ($form->isSubmitted() && $form->isValid()) {
-         //Obtengo el alumno del formulario
-         $usuario = $form->getData();
-         //Obtengo el EntityManager
-         $entityManager = $this->getDoctrine()->getManager();
-         //Le doy persistencia a la persona nueva
-         $entityManager->persist($usuario);
-         //Asiento los cambios en la base de datos
-         $entityManager->flush();
-
-         //Redirecciono al listado de personas
-         return $this->redirectToRoute('abm_usuarios');
-        }
+      //Si se disparo el formulario y es valido
+      if ($form->isSubmitted() && $form->isValid()) {
+       //Obtengo el alumno del formulario
+       $usuario = $form->getData();
+       //Obtengo el EntityManager
+       $entityManager = $this->getDoctrine()->getManager();
+       //Le doy persistencia a la persona nueva
+       $entityManager->persist($usuario);
+       //Asiento los cambios en la base de datos
+       $entityManager->flush();
+       //Redirecciono al listado de personas
+       return $this->redirectToRoute('abm_usuarios');
+      }
         
-        //Retorno a la vista
-        return $this->render('User/panelEditarUsuario.html.twig', [
-         'form' => $form->createView(),
-         'usuario' => $usuario,
-        ]);
-    }    
+    //Retorno a la vista
+    return $this->render('User/panelEditarUsuario.html.twig', [
+     'form' => $form->createView(),
+     'usuario' => $usuario,
+    ]);
+  }    
 
 
 }

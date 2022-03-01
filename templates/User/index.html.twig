@@ -7,6 +7,9 @@
 
   {% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Mi Perfil'  } %}
 
+
+  {% include "default/alertasFlash.html.twig" %}
+
   <!-- Caja de Datos del Usuario -->
   <div class="col s12">
     <ul class="collection with-header">
@@ -29,20 +32,35 @@
        <li class="collection-item"><strong><i class="material-icons left">info</i>Entre Calles:</strong> {{ usuario.direccion.entrecalle1 }} y {{ usuario.direccion.entrecalle2 }} </li>
        <li class="collection-item"><strong><i class="material-icons left">info</i>Codigo Postal:</strong> {{ usuario.direccion.codigopostal }}</li>
        <li class="collection-item"><strong><i class="material-icons left">info</i>Localidad:</strong> {{ usuario.direccion.ciudad }}</li>
-       <li class="collection-item"><strong><i class="material-icons left">info</i>Provincia:</strong>{{ usuario.direccion.provincia }}</li>
+       <li class="collection-item"><strong><i class="material-icons left">info</i>Provincia:</strong> {{ usuario.direccion.provincia }}</li>
       {% else %}
-       <li class="collection-item"><strong><i class="material-icons left">info</i> No se ha registrado direccion de envio </strong></li>
+        <li class="collection-item">
+          <div>
+           <strong><i class="material-icons left">info</i> No se ha registrado direccion de envio </strong> 
+            <div class="secondary-content">
+             <a href="{{ path('direccion_modificar') }}" class="waves-effect waves-light btn-small colorOficial white-text">Agregar Direccion <i class="material-icons right">gps_fixed</i></a>             
+            </div>            
+          </div>
+          <br>
+        </li>
       {% endif %}
       <!-- Direccion -->
       
-      <!-- Botonoes -->
+      <!-- Botonones -->
       <li class="collection-item grey lighten-2">
         <a href="{{ path('user_editar_mail') }}" class="waves-effect waves-light btn-small colorOficial white-text">
          <i class="material-icons left">edit</i>Actualizar Mail
         </a>  
         <a href="{{ path('user_editar_password') }}" style="margin:5px;" class="waves-effect waves-light btn-small colorOficial white-text">
          <i class="material-icons left">edit</i>Modificar Contraseña
-        </a>    
+        </a>  
+        {% if usuario.getDireccion() %}
+          <a href="{{ path('direccion_modificar') }}" style="margin:5px;" class="waves-effect waves-light btn-small colorOficial white-text">
+           <i class="material-icons left">edit</i>Modificar Direccion
+          </a>  
+        {% endif %}
+
+
       </li>    
       <!-- Botonoes -->
 
@@ -52,11 +70,7 @@
  
  <br>
 
-  <!-- Si es administrador le doy acceso al panel -->
-  {% if is_granted('ROLE_ADMIN') %}
-   {% include "default/administracion.html.twig" %}
-  {% endif %}
-  <!-- Si es administrador le doy acceso al panel -->
+ 
 
   <!-- Botones de Direccionamiento -->
   <div class="offset-s2 col s8 offset-s2">

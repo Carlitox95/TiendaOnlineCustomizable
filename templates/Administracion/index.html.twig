@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+ 
+          
+{% block contenido %}
+
+<div class="separadorMain">  
+
+  {% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Administracion'  } %}
+
+  <!-- Si es administrador le doy acceso al panel -->
+  {% if is_granted('ROLE_ADMIN') %}
+   {% include "Administracion/administracion.html.twig" %}
+  {% endif %}
+  <!-- Si es administrador le doy acceso al panel -->
+
+  <!-- Botones de Direccionamiento -->
+  <div class="offset-s2 col s8 offset-s2">
+    <center>
+        <a href="{{ path('home') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+          <i class="material-icons left">home</i>Volver al Home
+        </a> 
+    </center>
+  </div>
+  <!-- Botones de Direccionamiento -->
+
+
+</div>
+{% endblock contenido %}            
+
