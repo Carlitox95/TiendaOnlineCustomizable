@@ -22,6 +22,15 @@ Comandos SYMFONY 5.3
 - Limpiar Cache:  php bin/console cache:clear
 
 ========================================
+Instalar Dependencias de Mercado Pago
+========================================
+
+En el directorio de la App ejecutar
+
+composer require "mercadopago/dx-php:1.12.3"para PHP5.6.
+composer require "mercadopago/dx-php:2.4.5" para PHP7 o
+
+========================================
 Relacionar entidades via Consola
 ========================================
 

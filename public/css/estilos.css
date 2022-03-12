@@ -34,8 +34,9 @@ pre{
 }
 
 .gradiente1 {
- background: rgb(255,255,255);
- background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(68,68,68,1) 0%);
+ #background: rgb(255,255,255);
+ #background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(68,68,68,1) 0%);
+ background-color: black;
  color: white;
  border: 0px solid #A49E9E;
  border-radius: 30px 30px 30px 30px;
@@ -89,7 +90,8 @@ pre{
 }
 
 .tituloColorOficial {
- border-bottom: 3px solid #757575;
+ #border-bottom: 3px solid #757575;
+ border-bottom: 3px solid black;
  padding-bottom:2px;
 }
 
@@ -120,7 +122,8 @@ pre{
 }
 
 .colorOficial {
- background-color: #757575;
+ #background-color: #757575;
+ background-color: black;
 }
 
 .fondoOficial {
@@ -134,7 +137,8 @@ pre{
 }
 
 .collection.with-header .collection-header {
- background-color: #757575;
+ #background-color: #757575;
+ background-color: black;
  color: white;
 }
 

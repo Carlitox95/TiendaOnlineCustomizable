@@ -14,9 +14,8 @@
    {# Datos de la compra #}
    {# Direccion del Usuario #}
    <li class="collection-header"><h6>Direccion del Usuario</h6></li>
-   <li class="collection-item"><strong><i class="material-icons left">info</i>Calle: </strong> {{ venta.usuario.direccion.calle }} - Nro {{ venta.usuario.direccion.numero }} </li>
-   <li class="collection-item"><strong><i class="material-icons left">info</i>Entre Calles:</strong> {{ venta.usuario.direccion.entrecalle1 }} y {{ venta.usuario.direccion.entrecalle2 }} </li>
-   <li class="collection-item"><strong><i class="material-icons left">info</i>Codigo Postal:</strong> {{ venta.usuario.direccion.codigopostal }} <strong>- Localidad:</strong> {{ venta.usuario.direccion.ciudad }} <strong>- Provincia:</strong> {{ venta.usuario.direccion.provincia }}</li>
+   <li class="collection-item"><strong><i class="material-icons left">info</i>Calle: </strong> {{ venta.usuario.direccion.calle }} - Nro {{ venta.usuario.direccion.numero }}  entre/</strong> {{ venta.usuario.direccion.entrecalle1 }} y {{ venta.usuario.direccion.entrecalle2 }} </li>
+   <li class="collection-item"><i class="material-icons left">info</i><strong>Localidad:</strong> {{ venta.usuario.direccion.ciudad }} <strong>- Provincia:</strong> {{ venta.usuario.direccion.provincia }} <strong> - Codigo Postal:</strong> {{ venta.usuario.direccion.codigopostal }}</li>
    {# Direccion del Usuario #}
    {# Si el carrito tiene productos los muestros #}   
    <li class="collection-header"><h6>Articulos</h6></li>  

@@ -7,8 +7,7 @@ parameters:
     imagenes_directory: '%kernel.project_dir%/public/img/producto/'
     url_imagenes: '%kernel.project_dir%/public/'
     
-
-services:
+services:    
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

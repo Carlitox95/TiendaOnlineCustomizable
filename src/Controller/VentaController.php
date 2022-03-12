@@ -18,6 +18,7 @@ use App\Form\ProductosCarritoType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
+  
 class VentaController extends AbstractController
 {
 
@@ -77,7 +78,7 @@ class VentaController extends AbstractController
    $em = $this ->getDoctrine()->getManager();    
    //Obtengo el usuario logueado
    $usuarioLogueado=$this->get('security.token_storage')->getToken()->getUser();
-   //Obtengo todos los Productos que esten disponibles 
+   //Obtengo la venta
    $venta=$em->getRepository(Venta::class)->find($idVenta);
 
     
@@ -111,6 +112,41 @@ class VentaController extends AbstractController
       }
     }    
   }
+  
+  /**
+  *
+  * @Route("/app/venta/{idVenta}/confirmarPago", name="venta_pagar")
+  *
+  * @IsGranted("ROLE_USER")
+  */
+  function pagarVenta($idVenta) {    
+   //Obtengo el EntityManager
+   $em = $this ->getDoctrine()->getManager();    
+   //Obtengo el usuario logueado
+   $usuarioLogueado=$this->get('security.token_storage')->getToken()->getUser();
+   //Obtengo la venta
+   $venta=$em->getRepository(Venta::class)->find($idVenta);
+
+
+
+
+  
+   
+  
+   
+
+
+
+    //Retorno a la vista
+    return $this->render('Venta/confirmarPago.html.twig', 
+      [
+      'venta' => $venta,
+      ]
+    );
+    
+  }
+
+
 
   //Funcion que me crea un carrito de compras en caso de que no exista
   private function resetearCarrito($usuarioLogueado) {

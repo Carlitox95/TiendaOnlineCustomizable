@@ -21,7 +21,22 @@
         </thead>
         <tbody>
          {% for venta in ventas %}
-         <tr class="grey lighten-4">
+            {% if venta.estado == "NUEVA" %}
+             <tr class="cyan lighten-3">
+            {% endif %}
+            {% if venta.estado == "EN_PROCESO" %}
+             <tr class="light-blue accent-2">
+            {% endif %}
+            {% if venta.estado == "FINALIZADA" %}
+             <tr class="green accent-3">
+            {% endif %}
+            {% if venta.estado == "CANCELADA" %}
+             <tr class="yellow accent-4">
+            {% endif %}
+            {% if venta.estado == "RECHAZADA" %}
+             <tr class="grey lighten-4">
+            {% endif %}
+            
          <td>{{ venta.fecha|date("d/m/Y") }}</td>
          <td>${{ venta.precio }}</td>
          <td>{{ venta.estado }}</td>
