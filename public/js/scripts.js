@@ -125,3 +125,91 @@ let coincidencias=0;
      document.getElementById("mensajeBuscador").innerHTML="<strong><i class='material-icons'>error</i> No se encontraron resultados para la busqueda</strong>";
     }      
 }
+
+
+//Funcion para renderizar el menu
+function renderizarMenu(jsonResponse) {
+ //Obtengo el estado de las ventas del sistema
+ let estadoVentas=jsonResponse.estadoVentas;
+ //Obtengo el contenedor de los Links
+ let contenedorLinks=document.getElementById("contenedorLinks");
+ //Obtengo el primer hijo del contenedor de links
+ let linksMenu=contenedorLinks.childNodes;
+
+ //Obtengo el contenedor de los Links para la version Movil
+ let contenedorLinksMovil=document.getElementById("mobile-demo");
+  //Obtengo el primer hijo del contenedor de links para la version Movil
+ let linksMenuMovil=contenedorLinksMovil.childNodes;
+
+    //Si las ventas estas activas entonces genero los links del carrito y mis ventas
+    if(estadoVentas == true) {
+     //Link para las ventas del usuario
+     let linkVentas=document.createElement("li");
+     let aVentas=document.createElement("a");
+     aVentas.setAttribute("href","/venta");
+     aVentas.innerHTML="<i class='material-icons left'>shop</i> Mis Compras";
+     linkVentas.appendChild(aVentas);
+     //Link para el carrito de compras del usuario
+     let linkCarrito=document.createElement("li");
+     let aCarrito=document.createElement("a");
+     aCarrito.setAttribute("href","/carrito");
+     aCarrito.innerHTML="<i class='material-icons left'>add_shopping_cart</i> Carrito";
+     linkCarrito.appendChild(aCarrito);
+     //Inserto los Links despues del HOME
+     contenedorLinks.insertBefore(linkVentas,linksMenu[2]);
+     contenedorLinks.insertBefore(linkCarrito,linksMenu[2]);
+
+
+     //Link para las ventas del usuario
+     let linkVentasMovil=document.createElement("li");
+     let aVentasMovil=document.createElement("a");
+     aVentasMovil.setAttribute("href","/venta");
+     aVentasMovil.innerHTML="<i class='material-icons left'>shop</i> Mis Compras";
+     linkVentasMovil.appendChild(aVentasMovil);
+     //Link para el carrito de compras del usuario
+     let linkCarritoMovil=document.createElement("li");
+     let aCarritoMovil=document.createElement("a");
+     aCarritoMovil.setAttribute("href","/carrito");
+     aCarritoMovil.innerHTML="<i class='material-icons left'>add_shopping_cart</i> Carrito";
+     linkCarritoMovil.appendChild(aCarritoMovil);
+     //Inserto los Links despues del HOME
+     contenedorLinksMovil.insertBefore(linkVentasMovil,linksMenuMovil[2]);
+     contenedorLinksMovil.insertBefore(linkCarritoMovil,linksMenuMovil[2]);
+    }
+
+
+
+
+ 
+
+
+
+ 
+
+}
+
+
+
+//Funcion para renderizar el menu principal
+function consultarEstadoVentas(urlApi,usuarioLogueado) {
+    //Inicio la peticion del Request
+    $.ajax({ 
+     type: 'POST', 
+       url: urlApi,           
+        //Si la conexion es existosa 
+        success: function(response) {        
+            //Si hay un usuario logueado renderizo el menu
+            if(usuarioLogueado==1) {
+             renderizarMenu(response);  
+            }           
+        },
+        //Si hay un error lo muestro
+        error: function() {
+         mostrarAlerta('Se ha producido un error al consultar el Menu');
+         
+        } 
+    });
+
+}
+
+
