@@ -53,11 +53,9 @@
                  <img class="logoHeader" src="{{ asset('img/logo.png') }}">
                 </a>                  
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                   <ul class="right hide-on-med-and-down">                     
+                   <ul class="right hide-on-med-and-down" id="contenedorLinks">                     
                      <li><a href="{{ path('index') }}"><i class="material-icons left">home</i>Home</a></li>                                           
-                        {% if app.user %}
-                         <li><a href="{{ path('venta') }}"><i class="material-icons left">shop</i> Mis Compras</a></li>
-                         <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>                            
+                        {% if app.user %}                            
                          <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
                          <li><a href="{{ path('user') }}"><i class="material-icons left">person</i> {{ app.user.username }}</a></li>
                             {% if is_granted('ROLE_ADMIN') %}                             
@@ -74,27 +72,10 @@
             </div>
             <!-- Nvar para VERSION ESCRITORIO -->
             
-            {# 
-            <!-- Menus Desplegables-->
-            <ul id="dropdownProductos" class="dropdown-content">
-             <li><a href="{{ path('producto') }}"><i class="material-icons left">new_releases</i>Listado</a></li>
-             <li><a href="{{ path('producto_nuevo') }}"><i class="material-icons left">create</i>Crear</a></li> 
-             <li><a href="#"><i class="material-icons left">shopping_cart</i>Ofertas</a></li>             
-            </ul>
-            <ul id="dropdownProductosMovil" class="dropdown-content">
-             <li><a href="{{ path('producto') }}"><i class="material-icons left">new_releases</i>Listado</a></li>
-             <li><a href="{{ path('producto_nuevo') }}"><i class="material-icons left">create</i>Crear</a></li> 
-             <li><a href="#"><i class="material-icons left">shopping_cart</i>Ofertas</a></li>                    
-            </ul>
-            <!-- Menus Desplegables-->
-            #}
-
             <!-- Menu Desplegable para VERSION MOVIL -->            
             <ul class="sidenav" id="mobile-demo"> 
              <li><a href="{{ path('index') }}"><i class="material-icons left">home</i>Home</a></li>                          
-                {% if app.user %}
-                 <li><a href="{{ path('venta') }}"><i class="material-icons left">shop</i> Mis Compras</a></li>
-                 <li><a href="{{ path('carrito') }}"><i class="material-icons left">add_shopping_cart</i> Carrito</a></li>                    
+                {% if app.user %}                                 
                  <li><a href="{{ path('producto') }}"><i class="material-icons left">shopping_cart</i> Productos</a></li> 
                  <li><a href="{{ path('user') }}"><i class="material-icons left">person</i> {{ app.user.username }}</a></li>  
                     {% if is_granted('ROLE_ADMIN') %}                             
@@ -175,9 +156,14 @@
           </div>
         </footer>
         <!-- Footer -->
+  
 
-      
 
+        {% if app.user %} {% set usuarioLogueado= true %} {% else %} {% set usuarioLogueado= false %}{% endif %}
+        <script type="text/javascript">         
+         //Invoco a la funcion para Obtener el Menu Principal
+         consultarEstadoVentas('{{ path('api_ventas_estado') }}','{{ usuarioLogueado }}');
+        </script>     
         {% endblock body %}
     </body>
 </html>
