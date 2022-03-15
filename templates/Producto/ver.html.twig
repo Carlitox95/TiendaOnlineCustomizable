@@ -76,16 +76,22 @@
 
 
     
-    {% if producto.descripcionCompleta %}
-     <br>
-     <ul class="collection"><li class="collection-item">{{ producto.descripcionCompleta }}</li></ul>
-    {% endif %}
+    
     
 
         
 </div>
 <!-- Muestro el Producto -->    
 
+<!-- Muestro Descripcion del Producto -->
+{% if producto.descripcionCompleta %}
+ <br>
+    <ul class="collection with-header">  
+     <li class="collection-header"><strong>Descripcion Completa</strong></li>
+     <li class="collection-item">{{ producto.descripcionCompleta }}</li>
+    </ul>
+{% endif %}
+<!-- Muestro Descripcion del Producto -->
 
 <!-- Galeria del Producto -->
 {% if producto.getImagens()|length > 0 %}
