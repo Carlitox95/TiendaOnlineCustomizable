@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+    
+
+{% include "default/bannerMensaje.html.twig" with { 'mensaje' : 'Confirmar Pago'  } %}
+
+
+<!-- Datos de la Venta -->
+{% include "Venta/verVenta.html.twig" with { 'venta' : venta  } %}
+<!-- Datos de la Venta -->
+
+
+<br>
+<br>
+
+<!-- Boton de Pago Merado Pago -->
+<div class="contenedorMp" id="contenedorMp">
+</div>
+<!-- Boton de Pago Merado Pago -->
+
+
+
+<br>
+<br>
+
+<!-- Botones de Direccionamiento -->
+<div class="offset-s2 col s8 offset-s2">
+    <center>
+      <a href="{{ path('venta') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+       <i class="material-icons left">shop</i>Volver
+      </a>
+      <a href="{{ path('user') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+       <i class="material-icons left">home</i>Volver al Home
+      </a> 
+    </center>
+</div>
+<!-- Botones de Direccionamiento -->
+
+<br>
+<br>
+
+<script type="text/javascript"> 
+
+realizarPago({{venta.id}},'contenedorMp');
+
+</script>
+
+{% endblock %}
+

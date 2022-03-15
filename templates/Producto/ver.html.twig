@@ -59,11 +59,10 @@
 
          <li class="collection-header"><strong>Descripcion</strong></li>
          <li class="collection-item"><strong><i class="material-icons left">info</i> Descripcion:</strong> {{ producto.descripcion }}</li>     
-         <li class="collection-item">{{ producto.descripcionCompleta }}</li>  
         </ul>
     </div>
     <!-- Detalles de Producto -->
-
+   
     <!-- Imagen del Producto -->
     <div class="col s6">       
         {% if producto.getImagens()|length > 0 %}
@@ -74,6 +73,14 @@
         {% endif %} 
     </div>
     <!-- Imagen del Producto -->
+
+
+    
+    {% if producto.descripcionCompleta %}
+     <br>
+     <ul class="collection"><li class="collection-item">{{ producto.descripcionCompleta }}</li></ul>
+    {% endif %}
+    
 
         
 </div>
