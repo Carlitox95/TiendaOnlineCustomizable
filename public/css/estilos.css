@@ -196,8 +196,10 @@ pre{
 }
 
 .fondoHeader {
- #background-image: url("../img/bannerRelieve.png");
- background-position: center;
+ #background-image: url("../img/patron.png");
+ #background-position: center;
+ #background-repeat: repeat-x;
+ #background-size: 25px 50px;
 }
 
 .separadorMain {
