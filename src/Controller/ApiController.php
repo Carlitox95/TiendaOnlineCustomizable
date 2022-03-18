@@ -83,6 +83,29 @@ class ApiController extends AbstractController
     return new JsonResponse($arrayInfoTienda);       
    }
 
+   /**
+   * @Route("/api/nroTienda", name="api_obtener_numero_tienda")
+   */
+    public function obtenerNumeroTienda(): Response {
+    //Obtengo el Entity Manager
+    $em = $this ->getDoctrine()->getManager();  
+    //Obtengo el mensaje quienes somos
+    $mensaje=$em->getRepository(Configuracion::class)->find(3); 
+    //Defino el mensaje
+    $arrayInfoTienda="";
+        
+      //Si estan activas las ventas lo dejo en true
+      if ($mensaje->getMensaje()) {
+       $arrayInfoTienda=array("numeroTienda" => $mensaje->getMensaje());         
+      }
+      else {
+       $arrayInfoTienda=array("numeroTienda" => '');         
+      }   
+     
+    //Retorno el respose
+    return new JsonResponse($arrayInfoTienda);       
+   }
+
 
 //nombreTienda
 }

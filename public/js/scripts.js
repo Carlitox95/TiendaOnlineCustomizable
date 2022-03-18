@@ -215,7 +215,7 @@ function consultarMensajeTienda(urlApi) {
         },
         //Si hay un error lo muestro
         error: function() {
-         mostrarAlerta('Se ha producido un error al consultar el Menu');         
+         mostrarAlerta('Se ha producido un error');         
         } 
     });
 }
@@ -233,10 +233,28 @@ function obtenerNombreTienda(urlApi) {
         },
         //Si hay un error lo muestro
         error: function() {
-         mostrarAlerta('Se ha producido un error al consultar el Menu');         
+         mostrarAlerta('Se ha producido un error');         
         } 
     });
-
 }
 
+//Funcion para obtener el nombre de la Tienda
+function obtenerNumeroTienda(urlApi) {
+    //Inicio la peticion del Request
+    $.ajax({ 
+     type: 'POST', 
+       url: urlApi,           
+        //Si la conexion es existosa 
+        success: function(response) {        
+         //Obtengo el numero de la tienda
+         let contenedorNro=document.getElementById("nroTienda");
+         contenedorNro.setAttribute("href","https://api.whatsapp.com/send?phone="+response.numeroTienda); 
+         contenedorNro.innerHTML="<i class='material-icons left'>phone</i>"+response.numeroTienda;                   
+        },
+        //Si hay un error lo muestro
+        error: function() {
+         mostrarAlerta('Se ha producido un error');         
+        } 
+    });
+}
 

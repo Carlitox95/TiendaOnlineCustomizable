@@ -130,7 +130,7 @@
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Contacto</h5>
                 <ul>
-                 <a href="https://api.whatsapp.com/send?phone=542213618597&app=facebook&entry_point=page_cta&fbclid=IwAR1FFg2_xRFzuUS59aOsIDjkbguk1BHufXf7dyt52Ek52DYW_4Edh_oGR54" class="collection-item white-text"><i class="material-icons left">phone</i>221-361-8597</a>
+                 <a id="nroTienda" href="#" class="collection-item white-text"></a>
                 </ul>
               </div>
             </div>
@@ -157,7 +157,8 @@
          //Invoco a la funciones para configuracion
          consultarEstadoVentas('{{ path('api_ventas_estado') }}','{{ usuarioLogueado }}');
          consultarMensajeTienda('{{ path('api_informacion') }}');
-         obtenerNombreTienda('{{ path('api_obtener_nombre_tienda') }}');         
+         obtenerNombreTienda('{{ path('api_obtener_nombre_tienda') }}');  
+         obtenerNumeroTienda('{{ path('api_obtener_numero_tienda') }}');              
         </script>     
         {% endblock body %}
     </body>
