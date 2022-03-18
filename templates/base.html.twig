@@ -154,9 +154,10 @@
 
         {% if app.user %} {% set usuarioLogueado= true %} {% else %} {% set usuarioLogueado= false %}{% endif %}
         <script type="text/javascript">         
-         //Invoco a la funcion para Obtener el Menu Principal
+         //Invoco a la funciones para configuracion
          consultarEstadoVentas('{{ path('api_ventas_estado') }}','{{ usuarioLogueado }}');
          consultarMensajeTienda('{{ path('api_informacion') }}');
+         obtenerNombreTienda('{{ path('api_obtener_nombre_tienda') }}');         
         </script>     
         {% endblock body %}
     </body>

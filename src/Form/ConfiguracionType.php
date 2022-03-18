@@ -16,7 +16,9 @@ class ConfiguracionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder            
-            ->add('tipo',TextType::class,array('label'=>'Tipo de Mensaje a Mostrar (donde se usa)','attr'  => ['class' => 'input-field col s12','tipoInput' => 'input']))
+            ->add('tipo',TextType::class,array('label'=>'Tipo de Mensaje a Mostrar (donde se usa)','attr'  => ['class' => 'input-field col s12','readonly' => 'true','tipoInput' => 'input']))
+            
+
             ->add('mensaje',TextareaType::class,array('label'=>'Mensaje Completo','required' => false,'attr' => ['class' => 'materialize-textarea','tipoInput' => 'input'])) 
             ->add('activo',CheckboxType::class, array(
                 'label'=>'Activo',

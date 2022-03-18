@@ -220,4 +220,23 @@ function consultarMensajeTienda(urlApi) {
     });
 }
 
+//Funcion para obtener el nombre de la Tienda
+function obtenerNombreTienda(urlApi) {
+    //Inicio la peticion del Request
+    $.ajax({ 
+     type: 'POST', 
+       url: urlApi,           
+        //Si la conexion es existosa 
+        success: function(response) {        
+         //Obtengo el nombre de la tienda            
+         document.title =response.nombreTienda;                  
+        },
+        //Si hay un error lo muestro
+        error: function() {
+         mostrarAlerta('Se ha producido un error al consultar el Menu');         
+        } 
+    });
+
+}
+
 
