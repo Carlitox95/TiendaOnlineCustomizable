@@ -3,8 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
         <title>{% block title %}Natale!{% endblock %}</title>
-        <link rel="icon" href="{{ asset('img/icon.ico') }}">
-        
+        <link rel="icon" href="{{ asset('img/icon.ico') }}">        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -127,7 +126,7 @@
             <div class="row">
               <div class="col l6 s12">
                 <h5 class="white-text">Mas Informacion</h5>
-                <p class="grey-text text-lighten-4">
+                <p class="grey-text text-lighten-4" id="mensajeHomeFooter">
                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                  Lorem Ipsum has been the industry's standard dummy text...                
                 </p>
@@ -135,9 +134,7 @@
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Contacto</h5>
                 <ul>
-                    <li class="collection-item">
-                        
-                    </li>
+                 <a href="https://api.whatsapp.com/send?phone=542213618597&app=facebook&entry_point=page_cta&fbclid=IwAR1FFg2_xRFzuUS59aOsIDjkbguk1BHufXf7dyt52Ek52DYW_4Edh_oGR54" class="collection-item white-text"><i class="material-icons left">phone</i>221-361-8597</a>
                 </ul>
               </div>
             </div>
@@ -163,6 +160,7 @@
         <script type="text/javascript">         
          //Invoco a la funcion para Obtener el Menu Principal
          consultarEstadoVentas('{{ path('api_ventas_estado') }}','{{ usuarioLogueado }}');
+         consultarMensajeTienda('{{ path('api_informacion') }}');
         </script>     
         {% endblock body %}
     </body>

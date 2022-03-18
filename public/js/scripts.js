@@ -177,18 +177,7 @@ function renderizarMenu(jsonResponse) {
      contenedorLinksMovil.insertBefore(linkCarritoMovil,linksMenuMovil[2]);
     }
 
-
-
-
- 
-
-
-
- 
-
 }
-
-
 
 //Funcion para renderizar el menu principal
 function consultarEstadoVentas(urlApi,usuarioLogueado) {
@@ -209,7 +198,26 @@ function consultarEstadoVentas(urlApi,usuarioLogueado) {
          
         } 
     });
+}
 
+//Funcion para renderizar el mensaje de quienes somos
+function consultarMensajeTienda(urlApi) {
+    //Inicio la peticion del Request
+    $.ajax({ 
+     type: 'POST', 
+       url: urlApi,           
+        //Si la conexion es existosa 
+        success: function(response) {        
+            //Si hay un usuario logueado renderizo el menu            
+            if(response.estado == true) {
+             document.getElementById("mensajeHomeFooter").innerHTML=response.infoTienda;
+            }       
+        },
+        //Si hay un error lo muestro
+        error: function() {
+         mostrarAlerta('Se ha producido un error al consultar el Menu');         
+        } 
+    });
 }
 
 
