@@ -229,7 +229,8 @@ function obtenerNombreTienda(urlApi) {
         //Si la conexion es existosa 
         success: function(response) {        
          //Obtengo el nombre de la tienda            
-         document.title =response.nombreTienda;                  
+         document.title=response.nombreTienda; 
+         document.getElementById("nombreTiendaFooter").innerHTML="©2022 "+response.nombreTienda;                 
         },
         //Si hay un error lo muestro
         error: function() {
