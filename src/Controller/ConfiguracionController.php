@@ -25,7 +25,7 @@ class ConfiguracionController extends AbstractController
     public function index(): Response
     {
      //Obtengo el EntityManager
-     $em = $this ->getDoctrine()->getManager();    
+     $em = $this->getDoctrine()->getManager();    
      //Obtengo todas las entidades 
      $configuraciones=$em->getRepository(Configuracion::class)->findAll();
    

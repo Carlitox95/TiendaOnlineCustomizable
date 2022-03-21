@@ -15,7 +15,7 @@ class ApiController extends AbstractController
    /**
    * @Route("/api/estadoVentas", name="api_ventas_estado")
    */
-    public function obtenerEstadoVentas(): Response {
+   public function obtenerEstadoVentas(): Response {
     //Obtengo el Entity Manager
     $em = $this ->getDoctrine()->getManager();  
     //Obtengo el parametro del estado de las ventas 
@@ -40,7 +40,7 @@ class ApiController extends AbstractController
    /**
    * @Route("/api/informacionTienda", name="api_informacion")
    */
-    public function obtenerInformacion(): Response {
+   public function obtenerInformacion(): Response {
     //Obtengo el Entity Manager
     $em = $this ->getDoctrine()->getManager();  
     //Obtengo el mensaje quienes somos
@@ -63,7 +63,7 @@ class ApiController extends AbstractController
    /**
    * @Route("/api/nombreTienda", name="api_obtener_nombre_tienda")
    */
-    public function obtenerNombreTienda(): Response {
+   public function obtenerNombreTienda(): Response {
     //Obtengo el Entity Manager
     $em = $this ->getDoctrine()->getManager();  
     //Obtengo el mensaje quienes somos
@@ -86,7 +86,7 @@ class ApiController extends AbstractController
    /**
    * @Route("/api/nroTienda", name="api_obtener_numero_tienda")
    */
-    public function obtenerNumeroTienda(): Response {
+   public function obtenerNumeroTienda(): Response {
     //Obtengo el Entity Manager
     $em = $this ->getDoctrine()->getManager();  
     //Obtengo el mensaje quienes somos
@@ -107,6 +107,8 @@ class ApiController extends AbstractController
    }
 
 
-//nombreTienda
+
+   
+
 }
 
